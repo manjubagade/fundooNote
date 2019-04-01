@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FUNDOOAPP.views.Notes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="pin_btn" Icon="pin.png"/>
+        <ToolbarItem x:Name="bell_btn" Icon="bell.png"/>
+        <ToolbarItem x:Name="down_btn" Icon="archive.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout >
+            <StackLayout>
+                <StackLayout >
+                    <Editor  x:Name="title" Placeholder="Title" PlaceholderColor="Gray" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"/>
+                </StackLayout>
+                <StackLayout>
+                    <Editor  x:Name="notess"  Placeholder="Notes" AutoSize="TextChanges" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

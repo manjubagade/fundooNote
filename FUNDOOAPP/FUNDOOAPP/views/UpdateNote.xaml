@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FUNDOOAPP.views.UpdateNote" BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="pin_btn" Icon="pin" />
+        <ToolbarItem x:Name="bell_btn" Icon="bell" Clicked="Bell_btn_Clicked" />
+        <ToolbarItem x:Name="down_btn" Icon="archive"/>
+        <ToolbarItem x:Name="Delete" Text="Delete" Order="Secondary"  Clicked="Delete_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <StackLayout x:Name="UpdateNoteLayout" >
+                <StackLayout>
+                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
+                </StackLayout>
+                <StackLayout>
+                    <Editor x:Name="editorNote" Placeholder="Notes" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="End" BackgroundColor="White" 
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+
+                <StackLayout Orientation="Horizontal"    >
+                    <ImageButton x:Name="Listview" Source="plus.png" HeightRequest="30" WidthRequest="50" Padding="5,5,10,5" BackgroundColor="White" Clicked="Listview_Clicked" />
+                    <Label x:Name="space" Text="                                                                                             "/>
+                    <ImageButton Source="menuitem.png" HeightRequest="30" WidthRequest="35"  BackgroundColor="White" Clicked="ImageButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
