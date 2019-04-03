@@ -4,9 +4,9 @@
              x:Class="FUNDOOAPP.views.Archive">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Archive page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
+                <Grid x:Name="GridLayout"></Grid>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

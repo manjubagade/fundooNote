@@ -3,6 +3,8 @@
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
+using static FUNDOOAPP.DataFile.Enum;
+
 namespace FUNDOOAPP.Models
 {
     /// <summary>
@@ -33,5 +35,13 @@ namespace FUNDOOAPP.Models
         /// The notes.
         /// </value>
         public string Notes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the note.
+        /// </summary>
+        /// <value>
+        /// The type of the note.
+        /// </value>
+        public NoteType noteType { get; set; }
     }
 }

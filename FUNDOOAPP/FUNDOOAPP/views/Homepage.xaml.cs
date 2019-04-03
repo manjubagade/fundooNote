@@ -16,6 +16,8 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Repository;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
+    using static FUNDOOAPP.DataFile.Enum;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
     /// <summary>
@@ -77,12 +79,22 @@ namespace FUNDOOAPP.views
             IList<Note> notesData = (await this.firebaseclint.Child("User").Child(uid).Child("Note").OnceAsync<Note>()).Select(item => new Note
             {
                 Title = item.Object.Title,
-                Notes = item.Object.Notes
+                Notes = item.Object.Notes,
+                noteType = item.Object.noteType
             }).ToList();
 
+
+            IList<Note> listNote = new List<Note>();
             if (notesData == null)
             {
-                this.NoteGridView(notesData);
+                foreach (var item in notesData)
+                {
+                    if(item.noteType == NoteType.isNote)
+                    {
+                        listNote.Add(item);
+                    }
+                }
+                this.NoteGridView(listNote);
             }
         }
 
@@ -206,10 +218,19 @@ namespace FUNDOOAPP.views
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             var notes = await this.notesRepository.GetNotesAsync(uid);
+            IList<Note> listNote = new List<Note>();
             if (notes != null)
             {
-                this.NoteGridView(notes);
+                foreach (var item in notes)
+                {
+                    if (item.noteType == NoteType.isNote)
+                    {
+                        listNote.Add(item);
+                    }
+                }
+                this.NoteGridView(listNote);
             }
+
         }
     }
 }

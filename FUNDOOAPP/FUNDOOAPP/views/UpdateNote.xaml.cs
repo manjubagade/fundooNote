@@ -6,6 +6,7 @@
 namespace FUNDOOAPP.views
 {
     using System;
+    using System.Diagnostics;
     using Firebase.Database;
     using Firebase.Database.Query;
     using FUNDOOAPP.Interfaces;
@@ -16,6 +17,7 @@ namespace FUNDOOAPP.views
     using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
+    using static FUNDOOAPP.DataFile.Enum;
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -59,6 +61,22 @@ namespace FUNDOOAPP.views
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             editor.Text = note.Title;
             editorNote.Text = note.Notes;
+            ToolbarItems.Clear();
+            if (note.noteType == NoteType.isNote)
+            {
+                ToolbarItems.Add(archived);
+                ToolbarItems.Add(alaram);
+                ToolbarItems.Add(pincard);
+            }
+            else if(note.noteType == NoteType.isArchive)
+            {
+                ToolbarItems.Add(unarchived);
+            }
+            else if(note.noteType == NoteType.isTrash)
+            {
+                ToolbarItems.Add(deleted);
+                ToolbarItems.Add(Restoredata);
+            }
         }
 
         /// <summary>
@@ -69,7 +87,7 @@ namespace FUNDOOAPP.views
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             Delete delete = new Delete();
-            delete.Trash(note);
+           // delete.Trash(note);
             await this.firebaseclint.Child("User").Child(uid).Child("Note").Child(this.noteKeys).DeleteAsync();
         }
 
@@ -77,7 +95,7 @@ namespace FUNDOOAPP.views
         /// OnBackButtonPressed this instance
         /// </summary>
         /// <returns>return task</returns>
-        protected override bool OnBackButtonPressed()
+        protected  override bool OnBackButtonPressed()
         {
             if (Device.RuntimePlatform.Equals(Device.Android))
             {
@@ -106,23 +124,80 @@ namespace FUNDOOAPP.views
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             this.DeleteNotes();
-            await Navigation.PushModalAsync(new Masterpage());
+            await Navigation.PushModalAsync(new Masterpage()); 
         }
 
        
         private void Listview_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new MenuPage());
+           // PopupNavigation.Instance.PushAsync(new MenuPage(noteKeys));
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new MenuPage());
+            PopupNavigation.Instance.PushAsync(new MenuPage(noteKeys));
         }
 
         private void Bell_btn_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new Remainder());
+        }
+
+        private async void Archived_Clicked(object sender, EventArgs e)
+        {
+            string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            Note note = await this.notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+            note.noteType = NoteType.isArchive;
+            await notesRepository.UpdateNoteAsync(note, noteKeys, uid);
+            await Navigation.PushAsync(new Masterpage());
+
+        } 
+
+        private void Unarchived_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            Note note = await notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+            note.noteType = NoteType.isArchive;
+            await notesRepository.UpdateNoteAsync(note, noteKeys, uid);
+            await Navigation.PushModalAsync(new Masterpage());
+        }
+
+        private void Nodification_Clicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new Remainder());
+        }
+
+        private async void Deleted_Clicked(object sender, EventArgs e)
+        {
+            var answer = await DisplayAlert("Question?", "Delete this note forever", "Delete", "Cancel");
+           // Debug.WriteLine("Answer: " + answer);
+           if(answer==true)
+            {
+                this.DeleteNotes();
+                await Navigation.PushModalAsync(new Masterpage());
+            }
+            else
+            {
+                await Navigation.PushModalAsync(new Masterpage());
+            }
+        }
+
+        private async void Restoredata_Clicked(object sender, EventArgs e)
+        {
+            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+
+            Note newnote = new Note()
+            {
+                Title = editor.Text,
+                Notes = editorNote.Text
+            };
+          await  this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+            await Navigation.PushModalAsync(new Masterpage());
         }
     }
 }

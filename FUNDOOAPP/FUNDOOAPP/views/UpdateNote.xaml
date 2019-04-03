@@ -3,10 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FUNDOOAPP.views.UpdateNote" BackgroundColor="White">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="pin_btn" Icon="pin" />
-        <ToolbarItem x:Name="bell_btn" Icon="bell" Clicked="Bell_btn_Clicked" />
-        <ToolbarItem x:Name="down_btn" Icon="archive"/>
-        <ToolbarItem x:Name="Delete" Text="Delete" Order="Secondary"  Clicked="Delete_Clicked"/>
+        <ToolbarItem  x:Name="alaram" Clicked="Nodification_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="bell.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem x:Name="pincard" >
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="pin.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem  Clicked="ToolbarItem_Clicked" 
+                     x:Name="archived">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource"
+                            Android="archive.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem  Order="Primary"
+                     Clicked="ToolbarItem_Clicked"
+                     x:Name="unarchived">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource"
+                            Android="unarchive"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Order="Primary" x:Name="deleted"  Clicked="Deleted_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="delete.png"></OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem  x:Name="Restoredata" Clicked="Restoredata_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="Restore.png">
+                    
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RelativeLayout>

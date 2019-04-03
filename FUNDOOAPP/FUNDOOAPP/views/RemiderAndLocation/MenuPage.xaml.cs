@@ -4,6 +4,7 @@ using FUNDOOAPP.Interfaces;
 using FUNDOOAPP.Models;
 using FUNDOOAPP.Repository;
 using FUNDOOAPP.views.Dashbord;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,12 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static FUNDOOAPP.DataFile.Enum;
 
 namespace FUNDOOAPP.views.RemiderAndLocation
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPage
+	public partial class MenuPage : PopupPage
     {
         private NotesRepository notesRepository = new NotesRepository();
 
@@ -25,17 +27,13 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 
         private FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
 
-        public MenuPage()
+        public MenuPage(string notekay)
 		{
+            this.noteKeys = notekay;
             InitializeComponent();
 		}
          
-        public MenuPage(string noteKey)
-        {
-            this.noteKeys = noteKey;
-            this.UpdateNotes();
-            this.InitializeComponent();
-        }
+        
 
         public async void DeleteNotes()
         {
@@ -46,9 +44,21 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-
-            this.DeleteNotes();
-            await Navigation.PushModalAsync(new Masterpage());
+            try
+            {
+                Note note = new Note();
+                var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+                note = await notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
+                note.noteType = NoteType.isTrash;
+                await notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
+                await Navigation.PushModalAsync(new Masterpage());
+                await PopupNavigation.Instance.PopAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
         public async void UpdateNotes()
         {

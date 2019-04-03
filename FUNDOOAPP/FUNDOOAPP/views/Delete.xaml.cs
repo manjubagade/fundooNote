@@ -12,7 +12,9 @@ namespace FUNDOOAPP.views
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;    
+    using Xamarin.Forms.Xaml;
+    using static FUNDOOAPP.DataFile.Enum;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
     /// <summary>
@@ -21,6 +23,8 @@ namespace FUNDOOAPP.views
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class Delete : ContentPage
     {
+        NotesRepository notesRepository = new NotesRepository();
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Delete"/> class.
         /// </summary>
@@ -29,12 +33,25 @@ namespace FUNDOOAPP.views
          this.InitializeComponent();
         }
 
-        public List<Note> Trash(Note notes)
+        protected async override void OnAppearing()
         {
-            List<Note> list = new List<Note>();
-            list.Add(notes);
-            return list;
+            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            var notes = await notesRepository.GetNotesAsync(uid);
+            IList<Note> noteForGrid = new List<Note>();
+            if (notes != null)
+            {
+                foreach (var item in notes)
+                {
+                    if (item.noteType == NoteType.isTrash)
+                    {
+                        noteForGrid.Add(item);
+                    }
+                }
+            }
+            NoteGridView(noteForGrid);
         }
+
+
 
         public void NoteGridView(IList<Note> list)
         {
@@ -121,7 +138,6 @@ namespace FUNDOOAPP.views
                             var Keyval = KeyValue.Text;
                             Navigation.PushAsync(new UpdateNote(Keyval));
                         };
-
                         GridLayout.Children.Add(frame, columnIndex, rowIndex);
                     }
                 }
@@ -131,12 +147,6 @@ namespace FUNDOOAPP.views
                 Console.WriteLine(ex.Message);
             }
         }
-        protected async override void OnAppearing()
-        {
-            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            NotesRepository notesRepository = new NotesRepository();
-            
-           
-        }
+       
     }
 }

@@ -11,6 +11,7 @@ namespace FUNDOOAPP.Repository
     using Firebase.Database;
     using Firebase.Database.Query;
     using FUNDOOAPP.Models;
+    using static FUNDOOAPP.DataFile.Enum;
 
     /// <summary>
     /// this NotesRepository class
@@ -33,6 +34,7 @@ namespace FUNDOOAPP.Repository
             {
                 Title = item.Object.Title,
                 Notes = item.Object.Notes,
+                noteType = item.Object.noteType,
                 Key = item.Key
             }).ToList();
 
@@ -57,9 +59,9 @@ namespace FUNDOOAPP.Repository
         /// <param name="note">The note.</param>
         /// <param name="key">The key.</param>
         /// <param name="uid">The user id.</param>
-        public async void UpdateNoteAsync(Note note, string key, string uid)
+        public async Task UpdateNoteAsync(Note note, string key, string uid)
         {
-            await this.firebaseclient.Child("User").Child(uid).Child("Note").Child(key).PutAsync<Note>(new Note() { Title = note.Title, Notes = note.Notes });
+            await this.firebaseclient.Child("User").Child(uid).Child("Note").Child(key).PutAsync<Note>(new Note() { Title = note.Title, Notes = note.Notes, noteType = note.noteType });
         }
 
         /// <summary>
