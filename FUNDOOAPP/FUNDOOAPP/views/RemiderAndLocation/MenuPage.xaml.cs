@@ -57,8 +57,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-            
+            }      
         }
         public async void UpdateNotes()
         {
@@ -72,6 +71,5 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             PopupNavigation.Instance.PopAsync(true);
             PopupNavigation.Instance.PushAsync(new SharePage());     
         }
-
     }
 }

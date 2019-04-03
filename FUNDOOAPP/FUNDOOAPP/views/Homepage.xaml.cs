@@ -232,5 +232,10 @@ namespace FUNDOOAPP.views
             }
 
         }
+
+        private async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ListViewNote());
+        }
     }
 }

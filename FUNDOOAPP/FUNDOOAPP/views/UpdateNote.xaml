@@ -21,7 +21,7 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
         <ToolbarItem  Order="Primary"
-                     Clicked="ToolbarItem_Clicked"
+                     Clicked="Unarchived_Clicked_1"
                      x:Name="unarchived">
             <ToolbarItem.Icon>
                 <OnPlatform x:DataType="FileImageSource"
@@ -46,7 +46,7 @@
         <RelativeLayout>
             <StackLayout x:Name="UpdateNoteLayout" >
                 <StackLayout>
-                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
+                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"  ></Editor>
                 </StackLayout>
                 <StackLayout>
                     <Editor x:Name="editorNote" Placeholder="Notes" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>

@@ -199,5 +199,18 @@ namespace FUNDOOAPP.views
           await  this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
         }
+
+        private async void Unarchived_Clicked_1(object sender, EventArgs e)
+        {
+            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+
+            Note newnote = new Note()
+            {
+                Title = editor.Text,
+                Notes = editorNote.Text
+            };
+            await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+            await Navigation.PushModalAsync(new Masterpage());
+        }
     }
 }
