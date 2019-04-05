@@ -213,4 +213,4 @@ namespace FUNDOOAPP.views
             await Navigation.PushModalAsync(new Masterpage());
         }
     }
-}
+} 

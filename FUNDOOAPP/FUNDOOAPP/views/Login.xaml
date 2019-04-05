@@ -4,7 +4,7 @@
              x:Class="FUNDOOAPP.views.Login">
     <ContentPage.Content>
         <StackLayout Padding="10,20,10,5">
-            <Label Text="FUNDOO APP" FontAttributes="Bold" FontSize="Large"
+            <Label Text="FUNDOO APP" FontAttributes="Bold" FontSize="Large" Style="{DynamicResource FundooApp}"
                 HorizontalOptions="CenterAndExpand" TextColor="Black"/>
             <Image Source="logo" HeightRequest="60" WidthRequest="100"></Image>
             <Label Text="E-mails"/>
