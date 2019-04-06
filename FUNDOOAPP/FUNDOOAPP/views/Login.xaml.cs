@@ -57,6 +57,11 @@ namespace FUNDOOAPP.views
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Click_hanndle1(object sender, EventArgs e)
         {
+            if(Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+              await  DisplayAlert("No Internet", "check your network connection", "ok");
+                return;
+            }
             loading.IsEnabled = true;
             loading.IsRunning = true;
             loading.IsVisible = true;

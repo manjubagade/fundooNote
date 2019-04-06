@@ -22,14 +22,15 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PopAsync(true); 
+            Navigation.PushModalAsync(new Signup());
+            await PopupNavigation.Instance.PopAsync(true);
             
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-             PopupNavigation.Instance.PopAsync(true);
-            PopupNavigation.Instance.PushAsync(new SharePage());
+            PopupNavigation.Instance.PopAsync(true);
+           // PopupNavigation.Instance.PushAsync(new SharePage());
         }
     }
 }

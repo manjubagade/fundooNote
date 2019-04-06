@@ -69,7 +69,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         private void Button_Clicked_1(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true);
-            PopupNavigation.Instance.PushAsync(new SharePage());     
+             PopupNavigation.Instance.PushAsync(new SharePage());     
         }
     }
 }

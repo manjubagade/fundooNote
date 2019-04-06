@@ -44,9 +44,10 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RelativeLayout>
+            
             <StackLayout x:Name="UpdateNoteLayout" >
                 <StackLayout>
-                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"  ></Editor>
+                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
                 </StackLayout>
                 <StackLayout>
                     <Editor x:Name="editorNote" Placeholder="Notes" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>

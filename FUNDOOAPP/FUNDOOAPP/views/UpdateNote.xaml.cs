@@ -100,11 +100,11 @@ namespace FUNDOOAPP.views
             if (Device.RuntimePlatform.Equals(Device.Android))
             {
                 var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-
+                
                 Note newnote = new Note()
                 {
                     Title = editor.Text,
-                    Notes = editorNote.Text
+                    Notes = editorNote.Text 
                 };
                 this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
 
