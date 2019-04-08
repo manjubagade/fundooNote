@@ -61,12 +61,19 @@ namespace FUNDOOAPP.views
         /// <remarks>
         /// To be added.
         /// </remarks>
-        protected override bool OnBackButtonPressed()
+        //protected override bool OnBackButtonPressed()
+        //{
+        //    var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+        //    var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text });
+        //    base.OnBackButtonPressed();
+        //    return false;
+        //}
+
+         protected override void OnDisappearing()
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text });
-            base.OnBackButtonPressed();
-            return false;
-        }  
+            base.OnDisappearing();
+        }
     }
 }

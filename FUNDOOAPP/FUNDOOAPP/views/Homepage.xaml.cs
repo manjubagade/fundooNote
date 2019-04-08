@@ -14,6 +14,8 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Models;
     using FUNDOOAPP.Repository;
+    using FUNDOOAPP.views.RemiderAndLocation;
+    using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
     using static FUNDOOAPP.DataFile.Enum;
@@ -240,7 +242,8 @@ namespace FUNDOOAPP.views
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CameraPermition());
+            await PopupNavigation.PushAsync(new SharePage());
+            //await Navigation.PushAsync(new CameraPermition());
         }
     }
 }

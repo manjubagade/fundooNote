@@ -64,18 +64,18 @@ namespace FUNDOOAPP.views
             ToolbarItems.Clear();
             if (note.noteType == NoteType.isNote)
             {
-                ToolbarItems.Add(archived);
-                ToolbarItems.Add(alaram);
-                ToolbarItems.Add(pincard);
+                ToolbarItems.Add(this.archived);
+                ToolbarItems.Add(this.alaram);
+                ToolbarItems.Add(this.pincard);
             }
-            else if(note.noteType == NoteType.isArchive)
+            else if (note.noteType == NoteType.isArchive)
             {
-                ToolbarItems.Add(unarchived);
+                ToolbarItems.Add(this.unarchived);
             }
-            else if(note.noteType == NoteType.isTrash)
+            else if (note.noteType == NoteType.isTrash)
             {
-                ToolbarItems.Add(deleted);
-                ToolbarItems.Add(Restoredata);
+                ToolbarItems.Add(this.deleted);
+                ToolbarItems.Add(this.Restoredata);
             }
         }
 
@@ -95,7 +95,7 @@ namespace FUNDOOAPP.views
         /// OnBackButtonPressed this instance
         /// </summary>
         /// <returns>return task</returns>
-        protected  override bool OnBackButtonPressed()
+        protected  override  bool OnBackButtonPressed()
         {
             if (Device.RuntimePlatform.Equals(Device.Android))
             {
@@ -120,29 +120,48 @@ namespace FUNDOOAPP.views
         /// Delete_Clicked this instance
         /// </summary>
         /// <param name="sender">name</param>
-        /// <param name="e">name</param>
+        /// <param name="e">name p</param>
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             this.DeleteNotes();
             await Navigation.PushModalAsync(new Masterpage()); 
         }
 
-       
+        /// <summary>
+        /// this Listview_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Listview_Clicked(object sender, EventArgs e)
         {
            // PopupNavigation.Instance.PushAsync(new MenuPage(noteKeys));
         }
 
+        /// <summary>
+        /// this ImageButton_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new MenuPage(noteKeys));
         }
 
+        /// <summary>
+        /// this Bell_btn_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Bell_btn_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new Remainder());
         }
 
+        /// <summary>
+        /// this Archived_Clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Archived_Clicked(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
@@ -150,33 +169,51 @@ namespace FUNDOOAPP.views
             note.noteType = NoteType.isArchive;
             await notesRepository.UpdateNoteAsync(note, noteKeys, uid);
             await Navigation.PushAsync(new Masterpage());
+        }
 
-        } 
-
+        /// <summary>
+        /// this Unarchived_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Unarchived_Clicked(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// this ToolbarItem_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note note = await notesRepository.GetNoteByKeyAsync(noteKeys, uid);
             note.noteType = NoteType.isArchive;
-            await notesRepository.UpdateNoteAsync(note, noteKeys, uid);
+            await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
         }
 
+        /// <summary>
+        /// this Nodification_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"> EventArgs</param>
         private void Nodification_Clicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new Remainder());
         }
 
+        /// <summary>
+        /// this Deleted_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Deleted_Clicked(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Question?", "Delete this note forever", "Delete", "Cancel");
-           // Debug.WriteLine("Answer: " + answer);
-           if(answer==true)
+           if (answer == true)
             {
                 this.DeleteNotes();
                 await Navigation.PushModalAsync(new Masterpage());
@@ -187,16 +224,20 @@ namespace FUNDOOAPP.views
             }
         }
 
+        /// <summary>
+        /// this Restoredata_Clicked instance
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"> task</param>
         private async void Restoredata_Clicked(object sender, EventArgs e)
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-
             Note newnote = new Note()
             {
                 Title = editor.Text,
                 Notes = editorNote.Text
             };
-          await  this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+          await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
         }
 

@@ -4,15 +4,16 @@
              xmlns:cardView="clr-namespace:CardViewNetStandard;assembly=CardViewNetStandard"
              x:Class="FUNDOOAPP.views.Homepage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="Searchbar" Text="Search note                              " Priority="0"/>
+        <ToolbarItem x:Name="Searchbar" Text="Search note                     " Priority="0"/>
         <ToolbarItem x:Name="Cancel" Order="Primary"  Icon="grids.png" Clicked="Cancel_Clicked"/>
+        <ToolbarItem x:Name="Profile" Icon="manjuprofile.png" />
         <ToolbarItem x:Name="save"  Text="SIGN OUT"  Icon="sigout.png" Clicked="Save_Clicked" Order="Secondary"/>
         <ToolbarItem x:Name="Another" Text="ANOTHER ACCOUNT" Order="Secondary" />
         <ToolbarItem x:Name="Delete" Text="Delete" Order="Secondary" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <RelativeLayout>
-           
+            
             <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
                 <Grid x:Name="GridLayout"></Grid>
             </ScrollView>

@@ -83,9 +83,8 @@ namespace FUNDOOAPP.Repository
                 Notes = item.Object.Notes,
                 key   =item.Object.key
             }).ToList();
-
+    
             return notesData;
         }
-
     }
 }

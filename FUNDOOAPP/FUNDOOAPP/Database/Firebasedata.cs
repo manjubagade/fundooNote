@@ -87,23 +87,30 @@ namespace FUNDOOAPP.Database
             }).ToList();
         }
 
+        /// <summary>
+        /// Creates the label.
+        /// </summary>
+        /// <param name="label">The label.</param>
+        /// <returns> return task</returns>
         public async Task CreateLabel(string label)
         {
             var userid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            await firebase.Child("User").Child(userid).Child("Lab").PostAsync(new LabelNotes { Label = label });
+            await this.firebase.Child("User").Child(userid).Child("Lab").PostAsync(new LabelNotes { Label = label });
         }
 
+        /// <summary>
+        /// Gets all labels.
+        /// </summary>
+        /// <returns>return task</returns>
         public async Task<List<LabelNotes>> GetAllLabels()
         {
             var userid = DependencyService.Get<IFirebaseAuthenticator>().User();
             //// returns all the person contained in the list
-            return (await firebase
+            return (await this.firebase
               .Child("User").Child(userid).Child("Lab").OnceAsync<LabelNotes>()).Select(item => new LabelNotes
               {
                   Label = item.Object.Label
-
               }).ToList();
         }
-
     }
 }
