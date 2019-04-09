@@ -245,5 +245,15 @@ namespace FUNDOOAPP.views
             await PopupNavigation.PushAsync(new SharePage());
             //await Navigation.PushAsync(new CameraPermition());
         }
+
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Drawingpage());
+        }
+
+        private async void Searchbar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SearchNotes());
+        }
     }
 }

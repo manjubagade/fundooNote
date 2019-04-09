@@ -12,7 +12,7 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
         <Grid x:Name="controlGrid" RowSpacing="0" ColumnSpacing="0">
-
+ 
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="40" />
@@ -20,7 +20,6 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -32,23 +31,15 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton  Grid.Row="0" Grid.Column="0"   BackgroundColor="White" />
-            <Button Text ="Time" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small"  BackgroundColor="White" />
-            
-            <ImageButton Source="copy.png" Grid.Row="1" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Make a copy" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8"  FontSize="Small" BackgroundColor="White"/>
+            <Label Text="Time" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" FontAttributes="Bold" FontSize="25"/>
+            <DatePicker x:Name="datepicker" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8"/>
+            <TimePicker x:Name="timepicker" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8"/>
+            <Picker x:Name="mypicker" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="8" />
+            <Button Text="Cancel" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"/>
+            <Button Text="Save" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" />
 
-            <ImageButton Source="shareit.png" Grid.Row="2" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Send" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" />
 
-            <ImageButton Source="user.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
 
-            <ImageButton Source="labelss.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
-
-            <ImageButton Source=".png" Grid.Row="5" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="delete" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" />
         </Grid>
     </StackLayout>
 

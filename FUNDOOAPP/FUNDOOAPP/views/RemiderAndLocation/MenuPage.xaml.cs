@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using static FUNDOOAPP.DataFile.Enum;
@@ -24,6 +24,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         private NotesRepository notesRepository = new NotesRepository();
 
         private string noteKeys = string.Empty;
+        private string notes = string.Empty;
 
         private FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
 
@@ -33,8 +34,6 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             InitializeComponent();
 		}
          
-        
-
         public async void DeleteNotes()
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
@@ -66,10 +65,23 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true);
-             PopupNavigation.Instance.PushAsync(new SharePage());     
+            string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            Note notes = await notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+            await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest
+            {
+                Text = notes.Notes,
+                Title = "Share!"
+            });
+
+            await PopupNavigation.Instance.PopAsync(true);
+           //  PopupNavigation.Instance.PushAsync(new SharePage());     
+        }
+
+        private void Button_Clicked_2(object sender, EventArgs e)
+        {
+            DisplayAlert("alert ", " creating first labels", "ok");
         }
     }
 }

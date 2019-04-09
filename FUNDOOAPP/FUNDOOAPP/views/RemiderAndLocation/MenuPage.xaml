@@ -55,11 +55,10 @@
             <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
 
             <ImageButton Source="labelss.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
+            <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" Clicked="Button_Clicked_2"/>
 
             <ImageButton Source=".png" Grid.Row="5" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="delete" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" />
         </Grid>
     </StackLayout>
-
 </pages:PopupPage>

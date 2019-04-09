@@ -16,6 +16,12 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 		public Remainder ()
 		{
 			InitializeComponent ();
+            mypicker.Items.Add("Does not repeat");
+            mypicker.Items.Add("Daily");
+            mypicker.Items.Add("Weekly");
+            mypicker.Items.Add("Monthly");
+            mypicker.Items.Add("Yearly");
+            mypicker.Items.Add("Custom");
 		}
 	}
 }
