@@ -12,9 +12,26 @@ namespace FUNDOOAPP.views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SearchNotes : ContentPage
 	{
-		public SearchNotes ()
+        List<string> names = new List<string>
+          {
+                   "Kartik",
+                   "Deepak",
+                   "Amar",
+                   "Rahul",
+                   "Chetan",
+                   "Girish"
+           };
+        public SearchNotes ()
 		{
 			InitializeComponent ();
+            MainListView.ItemsSource = names;
 		}
-	}
+
+        private void OnBtnPressed(object sender, EventArgs e)
+        {
+            var keyword = MainSearchBar.Text;
+            MainListView.ItemsSource =
+            names.Where(name => name.ToLower().Contains(keyword.ToLower()));
+        }
+    }
 }

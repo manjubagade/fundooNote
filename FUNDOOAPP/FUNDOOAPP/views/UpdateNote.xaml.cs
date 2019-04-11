@@ -95,16 +95,16 @@ namespace FUNDOOAPP.views
         /// OnBackButtonPressed this instance
         /// </summary>
         /// <returns>return task</returns>
-        protected  override  bool OnBackButtonPressed()
+        protected override bool OnBackButtonPressed()
         {
             if (Device.RuntimePlatform.Equals(Device.Android))
             {
                 var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-                
+
                 Note newnote = new Note()
                 {
                     Title = editor.Text,
-                    Notes = editorNote.Text 
+                    Notes = editorNote.Text
                 };
                 this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
 
@@ -115,6 +115,19 @@ namespace FUNDOOAPP.views
                 return false;
             }
         }
+        //protected override async void OnDisappearing()
+        //{
+        //    var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+
+        //    Note newnote = new Note()
+        //    {
+        //        Title = editor.Text,
+        //        Notes = editorNote.Text
+        //    };
+        //    await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+
+        //    base.OnDisappearing();
+        //}
 
         /// <summary>
         /// Delete_Clicked this instance

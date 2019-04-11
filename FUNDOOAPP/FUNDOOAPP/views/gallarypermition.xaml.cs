@@ -1,4 +1,5 @@
-﻿using Firebase.Storage;
+﻿using Firebase.Database;
+using Firebase.Storage;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -17,6 +18,8 @@ namespace FUNDOOAPP.views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class gallarypermition : ContentPage
 	{
+
+        
         MediaFile file;
         public gallarypermition ()
 		{
@@ -51,6 +54,7 @@ namespace FUNDOOAPP.views
         }
         public async Task<string> StoreImages(Stream imageStream)
         {
+            FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
             String timeStamp = GetTimestamp(DateTime.Now);
             var stroageImage = await new FirebaseStorage("fundooapp-810e7.appspot.com")
                 .Child("XamarinMonkeys")

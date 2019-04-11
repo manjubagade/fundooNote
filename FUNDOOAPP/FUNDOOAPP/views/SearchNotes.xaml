@@ -4,9 +4,17 @@
              x:Class="FUNDOOAPP.views.SearchNotes">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar >
-                
-            </SearchBar>
+            <Label x:Name="MainLabel" Text="Search | ListView" Font="40" TextColor="Red" HorizontalOptions="Center" FontSize="Large" />
+            <SearchBar x:Name="MainSearchBar" SearchButtonPressed="OnBtnPressed" />
+            <ListView x:Name="MainListView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding .}" TextColor="Blue" FontSize="40" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

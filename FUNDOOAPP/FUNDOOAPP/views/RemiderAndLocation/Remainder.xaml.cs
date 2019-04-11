@@ -1,4 +1,8 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using FUNDOOAPP.Interfaces;
+using FUNDOOAPP.Models;
+using FUNDOOAPP.Repository;
+using FUNDOOAPP.views.Dashbord;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +17,10 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Remainder
 	{
-		public Remainder ()
+        NotesRepository notesRepository = new NotesRepository();
+        public Remainder ()
 		{
+          
 			InitializeComponent ();
             mypicker.Items.Add("Does not repeat");
             mypicker.Items.Add("Daily");
@@ -23,5 +29,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             mypicker.Items.Add("Yearly");
             mypicker.Items.Add("Custom");
 		}
-	}
+
+       
+    }
 }

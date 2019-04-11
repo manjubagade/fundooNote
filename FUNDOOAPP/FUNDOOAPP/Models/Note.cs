@@ -43,5 +43,7 @@ namespace FUNDOOAPP.Models
         /// The type of the note.
         /// </value>
         public NoteType noteType { get; set; }
+
+        public string DateTime { get; set; }
     }
 }

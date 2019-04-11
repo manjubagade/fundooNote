@@ -68,7 +68,7 @@ namespace FUNDOOAPP.views
         /// Checks the validation.
         /// </summary>
         /// <returns>return task</returns>
-        private bool CheckValidation()
+        public bool CheckValidation()
         {
             if (string.IsNullOrEmpty(first.Text) || Regex.IsMatch(first.Text, @"[0-9]") || first.Text.Length < 3)
             {
@@ -102,5 +102,6 @@ namespace FUNDOOAPP.views
 
             return true;
         }
+
     }
 }

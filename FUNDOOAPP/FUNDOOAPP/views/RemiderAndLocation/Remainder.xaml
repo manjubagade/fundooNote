@@ -38,11 +38,7 @@
             <Button Text="Cancel" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"/>
             <Button Text="Save" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" />
 
-
-
         </Grid>
     </StackLayout>
-
-
 
 </Pages:PopupPage>
