@@ -22,7 +22,13 @@
             <ListView x:Name="lstLabels">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Label}"></TextCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                                <ImageButton Source="labelicon.png"  BackgroundColor="White" Padding="5,5,10,5"/>
+                                <Label Text="{Binding Label}" HorizontalOptions="CenterAndExpand" TextColor="Black" BackgroundColor="White"></Label>
+                                <ImageButton Source="labelediticon.png" BackgroundColor="White"  Padding="5,5,10,5"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

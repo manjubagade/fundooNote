@@ -241,7 +241,7 @@ namespace FUNDOOAPP.views
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.PushAsync(new SharePage());
+            await PopupNavigation.Instance.PushAsync(new SharePage());
             //await Navigation.PushAsync(new CameraPermition());
         }
 

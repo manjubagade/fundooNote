@@ -28,9 +28,9 @@ namespace FUNDOOAPP.Repository
         /// </summary>
         /// <param name="uid">The user id </param>
         /// <returns>return task</returns>
-        public async Task<IList<Note>> GetNotesAsync(string uid)
+        public async Task<List<Note>> GetNotesAsync(string uid)
         {
-            IList<Note> notesData = (await this.firebaseclient.Child("User").Child(uid).Child("Note").OnceAsync<Note>()).Select(item => new Note
+            List<Note> notesData = (await this.firebaseclient.Child("User").Child(uid).Child("Note").OnceAsync<Note>()).Select(item => new Note
             {
                 Title = item.Object.Title,
                 Notes = item.Object.Notes,

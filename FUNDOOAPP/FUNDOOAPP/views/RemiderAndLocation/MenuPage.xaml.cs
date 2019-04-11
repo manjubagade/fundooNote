@@ -80,10 +80,10 @@ namespace FUNDOOAPP.views.RemiderAndLocation
            //  PopupNavigation.Instance.PushAsync(new SharePage());     
         }
 
-        private void Button_Clicked_2(object sender, EventArgs e)
+        private async  void Button_Clicked_2(object sender, EventArgs e)
         {
-            DisplayAlert("alert ", " creating first labels", "ok");
+            await Navigation.PushModalAsync(new labelspage());
+            await PopupNavigation.Instance.PopAsync(true);
         }
-
     }
 }
