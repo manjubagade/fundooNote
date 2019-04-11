@@ -11,7 +11,7 @@
         <StackLayout >
             <StackLayout>
                 <StackLayout >
-                    <Editor  x:Name="title" Placeholder="Title" PlaceholderColor="Gray" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"/>
+                    <Editor  x:Name="title" Placeholder="Title" PlaceholderColor="Gray" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" />
                 </StackLayout>
                 <StackLayout>
                     <Editor  x:Name="notess"  Placeholder="Notes" AutoSize="TextChanges" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True"/>

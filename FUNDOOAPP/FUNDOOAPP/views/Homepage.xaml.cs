@@ -232,7 +232,6 @@ namespace FUNDOOAPP.views
                 }
                 this.NoteGridView(listNote);
             }
-
         }
 
         private async void Cancel_Clicked(object sender, EventArgs e)

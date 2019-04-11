@@ -46,7 +46,7 @@
             <Button Text ="delete" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small"  BackgroundColor="White" Clicked="Button_Clicked"/>
 
             <ImageButton Source="copy.png" Grid.Row="1" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="Make a copy" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8"  FontSize="Small" BackgroundColor="White"/>
+            <Button Text ="Make a copy" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8"  FontSize="Small" BackgroundColor="White" />
 
             <ImageButton Source="shareit.png" Grid.Row="2" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Send" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" Clicked="Button_Clicked_1" />

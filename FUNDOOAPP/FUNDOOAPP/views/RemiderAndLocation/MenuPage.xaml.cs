@@ -69,6 +69,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note notes = await notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+
             await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest
             {
                 Text = notes.Notes,
@@ -83,5 +84,6 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         {
             DisplayAlert("alert ", " creating first labels", "ok");
         }
+
     }
 }
