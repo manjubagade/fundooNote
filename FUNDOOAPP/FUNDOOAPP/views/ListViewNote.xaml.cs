@@ -14,17 +14,19 @@ using static FUNDOOAPP.DataFile.Enum;
 
 namespace FUNDOOAPP.views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListViewNote : ContentPage
-	{
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+     public partial class ListViewNote : ContentPage
+    {
         private NotesRepository notesRepository = new NotesRepository();
-        public ListViewNote ()
-		{
-			InitializeComponent ();
-		}
+        public ListViewNote()
+        {
+           this.InitializeComponent();
+        }
 
-
+        /// <summary>
+        /// Lists the grid view.
+        /// </summary>
+        /// <param name="list">The list.</param>
         public void ListGridView(IList<Note> list)
         {
             try
@@ -122,6 +124,13 @@ namespace FUNDOOAPP.views
                 Console.WriteLine(ex.Message);
             }
         }
+
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected async override void OnAppearing()
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
@@ -141,6 +150,11 @@ namespace FUNDOOAPP.views
 
         }
 
+        /// <summary>
+        /// Handles the Clicked event of the Cancel control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
           await Navigation.PushModalAsync(new Masterpage());

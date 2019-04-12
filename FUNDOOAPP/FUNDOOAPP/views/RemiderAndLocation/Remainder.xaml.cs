@@ -14,22 +14,19 @@ using Xamarin.Forms.Xaml;
 
 namespace FUNDOOAPP.views.RemiderAndLocation
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Remainder
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+     public partial class Remainder
+     {
         NotesRepository notesRepository = new NotesRepository();
-        public Remainder ()
-		{
-          
-			InitializeComponent ();
+         public Remainder()
+         {
+            this.InitializeComponent();
             mypicker.Items.Add("Does not repeat");
             mypicker.Items.Add("Daily");
             mypicker.Items.Add("Weekly");
             mypicker.Items.Add("Monthly");
             mypicker.Items.Add("Yearly");
             mypicker.Items.Add("Custom");
-		}
-
-       
+         }  
     }
 }

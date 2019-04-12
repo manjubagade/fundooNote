@@ -19,22 +19,31 @@ namespace FUNDOOAPP.views
         public List<Note> noteData;
         public SearchNotes()
         {
-            InitializeComponent();
-            Getdata();
-            list.ItemsSource = noteData;
+            this.InitializeComponent();
+            this.Getdata();
+            list.ItemsSource = this.noteData;
         }
+
+        /// <summary>
+        /// Getdatas this instance.
+        /// </summary>
         public async void Getdata()
         {
             var userid = DependencyService.Get<IFirebaseAuthenticator>().User();
             NotesRepository notesRepository = new NotesRepository();
             List<Note> note = await notesRepository.GetNotesAsync(userid);
-            note = note.Where(a => a.noteType != NoteType.isArchive && a.noteType!=NoteType.isTrash).ToList();
+            note = note.Where(a => a.noteType != NoteType.isArchive && a.noteType != NoteType.isTrash).ToList();
             noteData = note;
         }
 
+        /// <summary>
+        /// Handles the TextChanged event of the SearchBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="TextChangedEventArgs"/> instance containing the event data.</param>
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(string.IsNullOrEmpty(e.NewTextValue))
+            if (string.IsNullOrEmpty(e.NewTextValue))
             {
                 list.ItemsSource = noteData;
             }

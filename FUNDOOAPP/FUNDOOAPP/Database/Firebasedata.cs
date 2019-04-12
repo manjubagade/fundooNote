@@ -112,6 +112,5 @@ namespace FUNDOOAPP.Database
                   Label = item.Object.Label
               }).ToList();
         }
-
     }
 }

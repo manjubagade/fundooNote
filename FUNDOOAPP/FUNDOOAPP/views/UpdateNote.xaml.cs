@@ -157,7 +157,7 @@ namespace FUNDOOAPP.views
         /// <param name="e"></param>
         private void ImageButton_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new MenuPage(noteKeys));
+            PopupNavigation.Instance.PushAsync(new MenuPage(this.noteKeys));
         }
 
         /// <summary>
@@ -178,20 +178,10 @@ namespace FUNDOOAPP.views
         private async void Archived_Clicked(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            Note note = await this.notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+            Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
-            await notesRepository.UpdateNoteAsync(note, noteKeys, uid);
+            await notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushAsync(new Masterpage());
-        }
-
-        /// <summary>
-        /// this Unarchived_Clicked instance
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Unarchived_Clicked(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -202,7 +192,7 @@ namespace FUNDOOAPP.views
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            Note note = await notesRepository.GetNoteByKeyAsync(noteKeys, uid);
+            Note note = await notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());

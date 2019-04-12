@@ -91,7 +91,7 @@ namespace FUNDOOAPP.views
             {
                 foreach (var item in notesData)
                 {
-                    if(item.noteType == NoteType.isNote)
+                    if (item.noteType == NoteType.isNote)
                     {
                         listNote.Add(item);
                     }

@@ -21,7 +21,7 @@
                  BackgroundColor="White"
                  HorizontalOptions="End"
                  VerticalOptions="End">
-        <Grid x:Name="controlGrid" RowSpacing="0" ColumnSpacing="0">
+        <Grid x:Name="controlGrid" RowSpacing="0" ColumnSpacing="2">
 
             <Grid.RowDefinitions>
 
@@ -54,11 +54,16 @@
             <ImageButton Source="user.png" Grid.Row="3" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Collaborator" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White"/>
 
-            <ImageButton Source="labelss.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
+            <ImageButton Source="labelicon.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" Clicked="Button_Clicked_2"/>
 
-            <ImageButton Source=".png" Grid.Row="5" Grid.Column="0"  BackgroundColor="White"/>
-            <Button Text ="delete" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="8" />
+            <ImageButton Source="redcolor.png" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" BackgroundColor="White"/>
+            <ImageButton Source="greencolor.png" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" BackgroundColor="White"/>
+            <ImageButton Source="pinkcolor.png" Grid.Row="5" Grid.Column="3" BackgroundColor="White"/>
+            <ImageButton Source="redcolor.png" Grid.Row="5" Grid.Column="4"  BackgroundColor="White"/>
+            <ImageButton Source="orangecolor.png" Grid.Row="5" Grid.Column="5" BackgroundColor="White"/>
+            <ImageButton Source="yellowcolor.png" Grid.Row="5" Grid.Column="6" BackgroundColor="White"/>
+
         </Grid>
     </StackLayout>
 </pages:PopupPage>

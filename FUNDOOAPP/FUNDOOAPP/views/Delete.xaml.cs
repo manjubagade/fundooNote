@@ -48,11 +48,13 @@ namespace FUNDOOAPP.views
                     }
                 }
             }
-            NoteGridView(noteForGrid);
+            this.NoteGridView(noteForGrid);
         }
 
-
-
+        /// <summary>
+        /// Notes the grid view.
+        /// </summary>
+        /// <param name="list">The list.</param>
         public void NoteGridView(IList<Note> list)
         {
             try

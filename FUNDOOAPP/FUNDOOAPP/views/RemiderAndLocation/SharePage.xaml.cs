@@ -58,8 +58,8 @@ namespace FUNDOOAPP.views.RemiderAndLocation
                 {
                     Directory = "Images",
                     Name = DateTime.Now + "_test.jpg"
-                }
-                    );
+                });
+
                 if (file == null)
                     return;
                 await DisplayAlert("file path", file.Path, "ok");

@@ -15,26 +15,30 @@ using Xamarin.Forms.Xaml;
 
 namespace FUNDOOAPP.views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class gallarypermition : ContentPage
-	{
-
-        
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+     public partial class gallarypermition : ContentPage
+     {
         MediaFile file;
-        public gallarypermition ()
-		{
-			InitializeComponent ();
-		}
+         public gallarypermition()
+         {
+            this.InitializeComponent();
+         }
+
+        /// <summary>
+        /// Handles the Clicked event of the btnPick control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnPick_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
             try
             {
-                file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                this.file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                 {
                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
                 });
-                if (file == null)
+                if (this.file == null)
                     return;
                 imgChoosed.Source = ImageSource.FromStream(() =>
                 {
@@ -48,10 +52,22 @@ namespace FUNDOOAPP.views
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Handles the Clicked event of the btnStore control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnStore_Clicked(object sender, EventArgs e)
         {
             await StoreImages(file.GetStream());
         }
+
+        /// <summary>
+        /// Stores the images.
+        /// </summary>
+        /// <param name="imageStream">The image stream.</param>
+        /// <returns></returns>
         public async Task<string> StoreImages(Stream imageStream)
         {
             FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
@@ -64,10 +80,14 @@ namespace FUNDOOAPP.views
             return imgurl;
         }
 
+        /// <summary>
+        /// Gets the timestamp.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");
         }
-
     }
 }
