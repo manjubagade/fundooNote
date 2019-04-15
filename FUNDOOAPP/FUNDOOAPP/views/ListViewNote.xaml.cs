@@ -1,23 +1,32 @@
-﻿using FUNDOOAPP.Interfaces;
-using FUNDOOAPP.Models;
-using FUNDOOAPP.Repository;
-using FUNDOOAPP.views.Dashbord;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using static FUNDOOAPP.DataFile.Enum;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="ListViewNote.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views
 {
+    using FUNDOOAPP.Interfaces;
+    using FUNDOOAPP.Models;
+    using FUNDOOAPP.Repository;
+    using FUNDOOAPP.views.Dashbord;
+    using System;
+    using System.Collections.Generic;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+    using static FUNDOOAPP.DataFile.Enum;    
     [XamlCompilation(XamlCompilationOptions.Compile)]
-     public partial class ListViewNote : ContentPage
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ListViewNote" /> class.
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
+    public partial class ListViewNote : ContentPage
     {
         private NotesRepository notesRepository = new NotesRepository();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListViewNote"/> class.
+        /// </summary>
         public ListViewNote()
         {
            this.InitializeComponent();

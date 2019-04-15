@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="TrashData.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.Models
 {
-   public class TrashData
+    /// <summary>
+    /// this TrashData instance
+    /// </summary>
+    public class TrashData
     {
         /// <summary>
         /// Gets or sets the key.

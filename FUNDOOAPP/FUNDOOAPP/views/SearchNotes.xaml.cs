@@ -1,18 +1,19 @@
-﻿using FUNDOOAPP.Interfaces;
-using FUNDOOAPP.Models;
-using FUNDOOAPP.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using static FUNDOOAPP.DataFile.Enum;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="SearchNotes.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+    using FUNDOOAPP.Interfaces;
+    using FUNDOOAPP.Models;
+    using FUNDOOAPP.Repository;
+    using static FUNDOOAPP.DataFile.Enum;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchNotes : ContentPage
     {
@@ -33,7 +34,7 @@ namespace FUNDOOAPP.views
             NotesRepository notesRepository = new NotesRepository();
             List<Note> note = await notesRepository.GetNotesAsync(userid);
             note = note.Where(a => a.noteType != NoteType.isArchive && a.noteType != NoteType.isTrash).ToList();
-            noteData = note;
+            this.noteData = note;
         }
 
         /// <summary>
@@ -45,11 +46,11 @@ namespace FUNDOOAPP.views
         {
             if (string.IsNullOrEmpty(e.NewTextValue))
             {
-                list.ItemsSource = noteData;
+                list.ItemsSource = this.noteData;
             }
             else
             {
-                list.ItemsSource = noteData.Where(x => (x.Title.ToLower().Contains(e.NewTextValue.ToLower())
+                list.ItemsSource = this.noteData.Where(x => (x.Title.ToLower().Contains(e.NewTextValue.ToLower())
                 && x.Notes.ToLower().Contains(e.NewTextValue.ToLower())) || x.Title.ToLower().Contains(e.NewTextValue.ToLower()) 
                 || x.Notes.ToLower().Contains(e.NewTextValue.ToLower()));
             }

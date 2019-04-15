@@ -1,23 +1,24 @@
-﻿using Firebase.Database;
-using Firebase.Database.Query;
-using FUNDOOAPP.Interfaces;
-using FUNDOOAPP.Models;
-using FUNDOOAPP.Repository;
-using FUNDOOAPP.views.Dashbord;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using static FUNDOOAPP.DataFile.Enum;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="MenuPage.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views.RemiderAndLocation
 {
+    using System;
+    using Firebase.Database;
+    using Firebase.Database.Query;
+    using FUNDOOAPP.Interfaces;
+    using FUNDOOAPP.Models;
+    using FUNDOOAPP.Repository;
+    using FUNDOOAPP.views.Dashbord;
+    using Rg.Plugins.Popup.Pages;
+    using Rg.Plugins.Popup.Services;
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+    using static FUNDOOAPP.DataFile.Enum;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
      public partial class MenuPage : PopupPage
     {
@@ -59,9 +60,9 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             {
                 Note note = new Note();
                 var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-                note = await notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
+                note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
                 note.noteType = NoteType.isTrash;
-                await notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
+                await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
                 await Navigation.PushModalAsync(new Masterpage());
                 await PopupNavigation.Instance.PopAsync();
             }
@@ -89,7 +90,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            Note notes = await notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
+            Note notes = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
 
             await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest
             {

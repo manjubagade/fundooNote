@@ -1,19 +1,26 @@
-﻿using Plugin.Media;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CameraPermition.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views
 {
+    using System;
+    using Plugin.Media;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;    
     [XamlCompilation(XamlCompilationOptions.Compile)]
-      public partial class CameraPermition : ContentPage
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CameraPermition" /> class.
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
+    public partial class CameraPermition : ContentPage
       {
-       public CameraPermition()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraPermition"/> class.
+        /// </summary>
+        public CameraPermition()
         {
           this.InitializeComponent();
         }
@@ -28,7 +35,7 @@ namespace FUNDOOAPP.views
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsTakePhotoSupported && CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("alert", "take photo not supported", "ok");
+                await this.DisplayAlert("alert", "take photo not supported", "ok");
                 return;
             }
             else
@@ -38,10 +45,10 @@ namespace FUNDOOAPP.views
                     Directory = "Images",
                     Name = DateTime.Now + "_test.jpg"
                 });
-
                 if (file == null)
                     return;
-                await DisplayAlert("file path", file.Path, "ok");
+
+                await this.DisplayAlert("file path", file.Path, "ok");
 
                 MyImage.Source = ImageSource.FromStream(() =>
                 {

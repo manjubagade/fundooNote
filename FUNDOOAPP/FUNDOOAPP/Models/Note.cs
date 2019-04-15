@@ -3,10 +3,12 @@
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
-using static FUNDOOAPP.DataFile.Enum;
+
 
 namespace FUNDOOAPP.Models
 {
+    using static FUNDOOAPP.DataFile.Enum;
+
     /// <summary>
     /// this Note class
     /// </summary>
@@ -44,6 +46,12 @@ namespace FUNDOOAPP.Models
         /// </value>
         public NoteType noteType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the date time.
+        /// </summary>
+        /// <value>
+        /// The date time.
+        /// </value>
         public string DateTime { get; set; }
     }
 }

@@ -180,7 +180,7 @@ namespace FUNDOOAPP.views
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
-            await notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
+            await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushAsync(new Masterpage());
         }
 
@@ -192,7 +192,7 @@ namespace FUNDOOAPP.views
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            Note note = await notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
+            Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
@@ -244,6 +244,11 @@ namespace FUNDOOAPP.views
             await Navigation.PushModalAsync(new Masterpage());
         }
 
+        /// <summary>
+        /// Handles the 1 event of the Unarchived_Clicked control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Unarchived_Clicked_1(object sender, EventArgs e)
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();

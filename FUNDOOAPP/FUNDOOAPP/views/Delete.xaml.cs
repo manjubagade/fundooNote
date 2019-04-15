@@ -33,10 +33,16 @@ namespace FUNDOOAPP.views
          this.InitializeComponent();
         }
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+        /// </summary>
+        /// <remarks>
+        /// To be added.
+        /// </remarks>
         protected async override void OnAppearing()
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            var notes = await notesRepository.GetNotesAsync(uid);
+            var notes = await this.notesRepository.GetNotesAsync(uid);
             IList<Note> noteForGrid = new List<Note>();
             if (notes != null)
             {

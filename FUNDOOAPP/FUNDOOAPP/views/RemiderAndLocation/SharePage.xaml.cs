@@ -49,7 +49,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsTakePhotoSupported && CrossMedia.Current.IsPickPhotoSupported)
             {
-                await DisplayAlert("alert", "take photo not supported", "ok");
+                await this.DisplayAlert("alert", "take photo not supported", "ok");
                 return;
             }
             else
@@ -62,7 +62,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 
                 if (file == null)
                     return;
-                await DisplayAlert("file path", file.Path, "ok");
+                await this.DisplayAlert("file path", file.Path, "ok");
 
                 MyImage.Source = ImageSource.FromStream(() =>
                 {

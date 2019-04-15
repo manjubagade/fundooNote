@@ -1,20 +1,31 @@
-﻿using FUNDOOAPP.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CameraPermition.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views
 {
-   [XamlCompilation(XamlCompilationOptions.Compile)]
+    using System;
+    using FUNDOOAPP.Database;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;    
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Labels" /> class.
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class Labels : ContentPage
     {
+        /// <summary>
+        /// The firebase
+        /// </summary>
         Firebasedata firebase = new Firebasedata();
-       public Labels()
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Labels"/> class.
+        /// </summary>
+        public Labels()
          {
             this.InitializeComponent();
          }
@@ -33,7 +44,7 @@ namespace FUNDOOAPP.views
                 base.OnAppearing();
 
                 //// Listing all the person in the list
-                var allLabels = await firebase.GetAllLabels();
+                var allLabels = await this.firebase.GetAllLabels();
                 lstLabels.ItemsSource = allLabels;
             }
             catch (Exception exception)
@@ -51,8 +62,7 @@ namespace FUNDOOAPP.views
         {
             try
             {
-                await firebase.CreateLabel(txtLabel.Text);
-
+                await this.firebase.CreateLabel(txtLabel.Text);
                 //// Empty the placeholder
                 txtLabel.Text = string.Empty;
                 var allLabels = await this.firebase.GetAllLabels();

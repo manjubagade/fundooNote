@@ -1,31 +1,43 @@
-﻿using Firebase.Database;
-using Firebase.Storage;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="gallarypermition.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Firebase.Database;
+    using Firebase.Storage;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;    
     [XamlCompilation(XamlCompilationOptions.Compile)]
-     public partial class gallarypermition : ContentPage
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="gallarypermition" /> class.
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
+    public partial class gallarypermition : ContentPage
      {
-        MediaFile file;
-         public gallarypermition()
+        /// <summary>
+        /// The file
+        /// </summary>
+       private MediaFile file;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="gallarypermition"/> class.
+        /// </summary>
+        public gallarypermition()
          {
             this.InitializeComponent();
          }
 
         /// <summary>
-        /// Handles the Clicked event of the btnPick control.
+        /// Handles the Clicked event of the button Pick control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -38,14 +50,16 @@ namespace FUNDOOAPP.views
                 {
                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
                 });
+
                 if (this.file == null)
                     return;
+
                 imgChoosed.Source = ImageSource.FromStream(() =>
                 {
-                    var imageStram = file.GetStream();
+                    var imageStram = this.file.GetStream();
                     return imageStram;
                 });
-                await StoreImages(file.GetStream());
+                await this.StoreImages(this.file.GetStream());
             }
             catch (Exception ex)
             {
@@ -54,24 +68,24 @@ namespace FUNDOOAPP.views
         }
 
         /// <summary>
-        /// Handles the Clicked event of the btnStore control.
+        /// Handles the Clicked event of the button Store control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void btnStore_Clicked(object sender, EventArgs e)
         {
-            await StoreImages(file.GetStream());
+            await this.StoreImages(this.file.GetStream());
         }
 
         /// <summary>
         /// Stores the images.
         /// </summary>
         /// <param name="imageStream">The image stream.</param>
-        /// <returns></returns>
+        /// <returns>return task</returns>
         public async Task<string> StoreImages(Stream imageStream)
         {
             FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
-            String timeStamp = GetTimestamp(DateTime.Now);
+            string timeStamp = GetTimestamp(DateTime.Now);
             var stroageImage = await new FirebaseStorage("fundooapp-810e7.appspot.com")
                 .Child("XamarinMonkeys")
                 .Child("image_" + timeStamp + ".jpg")
@@ -84,7 +98,7 @@ namespace FUNDOOAPP.views
         /// Gets the timestamp.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>return task</returns>
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");

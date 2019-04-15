@@ -36,7 +36,7 @@ namespace FUNDOOAPP.views
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
 
             /// Gets the notes from Database with respect to user
-            var notes = await noteRepository.GetNotesAsync(uid);
+            var notes = await this.noteRepository.GetNotesAsync(uid);
             IList<Note> noteForGrid = new List<Note>();
             /// if response is not null it will go to method where it will render as a Grid view
             if (notes != null)
@@ -49,10 +49,13 @@ namespace FUNDOOAPP.views
                     }
                 }
             }
-
-            NoteGridView(noteForGrid);
+            this.NoteGridView(noteForGrid);
         }
 
+        /// <summary>
+        /// Notes the grid view.
+        /// </summary>
+        /// <param name="list">The list.</param>
         public void NoteGridView(IList<Note> list)
         {
             try

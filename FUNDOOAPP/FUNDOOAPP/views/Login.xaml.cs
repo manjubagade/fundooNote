@@ -59,9 +59,10 @@ namespace FUNDOOAPP.views
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-              await DisplayAlert("No Internet", "check your network connection", "ok");
+              await this.DisplayAlert("No Internet", "check your network connection", "ok");
                 return;
             }
+
             loading.IsEnabled = true;
             loading.IsRunning = true;
             loading.IsVisible = true;

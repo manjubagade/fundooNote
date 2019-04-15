@@ -1,24 +1,29 @@
-﻿using FUNDOOAPP.Interfaces;
-using FUNDOOAPP.Models;
-using FUNDOOAPP.Repository;
-using FUNDOOAPP.views.Dashbord;
-using Rg.Plugins.Popup.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="CameraPermition.xaml.cs" company="BridgeLabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace FUNDOOAPP.views.RemiderAndLocation
 {
+    using FUNDOOAPP.Repository;
+    using Xamarin.Forms.Xaml;
+   
     [XamlCompilation(XamlCompilationOptions.Compile)]
-     public partial class Remainder
+
+    /// <summary>
+    /// this Remainder instance
+    /// </summary>
+    public partial class Remainder
      {
+        /// <summary>
+        /// this notesRepository instance
+        /// </summary>
         NotesRepository notesRepository = new NotesRepository();
-         public Remainder()
+
+        /// <summary>
+        /// this Remainder instance
+        /// </summary>
+        public Remainder()
          {
             this.InitializeComponent();
             mypicker.Items.Add("Does not repeat");

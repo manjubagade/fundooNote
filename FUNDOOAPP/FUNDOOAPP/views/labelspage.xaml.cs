@@ -1,20 +1,25 @@
-﻿using FUNDOOAPP.Database;
-using Plugin.InputKit.Shared.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿
 
 namespace FUNDOOAPP.views
 {
+    using System;
+    using System.Collections.Generic;
+    using FUNDOOAPP.Database;
+    using Plugin.InputKit.Shared.Controls;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;    
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="labelspage" /> class.
+    /// </summary>
+    /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class labelspage : ContentPage
     {
-         public labelspage()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="labelspage"/> class.
+        /// </summary>
+        public labelspage()
          {
          this.InitializeComponent();
        }
@@ -31,7 +36,7 @@ namespace FUNDOOAPP.views
             try
             {
                 base.OnAppearing();
-                var alllabels = await firebasedata.GetAllLabels();
+                var alllabels = await this.firebasedata.GetAllLabels();
                 lstLabels.ItemsSource = alllabels;
             }
             catch (Exception ex)
