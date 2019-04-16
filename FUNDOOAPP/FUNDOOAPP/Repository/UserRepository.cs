@@ -41,7 +41,6 @@ namespace FUNDOOAPP.Repository
                 {
                     await this.firebaseclient.Child("User").Child(uid).Child("Userinfo").PostAsync<User>(new User() { FirstName = firstName, LastName = lastName });
                 }
-
                 return uid;
             }
             catch (Exception ex)
@@ -49,6 +48,15 @@ namespace FUNDOOAPP.Repository
                 System.Console.WriteLine(ex.Message);
                 return null;
             }  
+        }
+        public async Task<string> GetimageSouce(string imagesouce)
+        {
+            string uid =  DependencyService.Get<IFirebaseAuthenticator>().User();
+            if(uid ==null)
+            {
+                await firebaseclient.Child("User").Child(uid).Child("Userinfo").PostAsync<User>(new User() { Imageurl = imagesouce });
+            }
+            return uid;
         }
     }
 }

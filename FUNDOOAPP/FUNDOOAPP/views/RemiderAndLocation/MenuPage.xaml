@@ -56,14 +56,19 @@
 
             <ImageButton Source="labelicon.png" Grid.Row="4" Grid.Column="0"  BackgroundColor="White"/>
             <Button Text ="Labels" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8" FontSize="Small" BackgroundColor="White" Clicked="Button_Clicked_2"/>
-
-            <ImageButton Source="redcolor.png" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" BackgroundColor="White"/>
-            <ImageButton Source="greencolor.png" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1" BackgroundColor="White"/>
-            <ImageButton Source="pinkcolor.png" Grid.Row="5" Grid.Column="3" BackgroundColor="White"/>
-            <ImageButton Source="redcolor.png" Grid.Row="5" Grid.Column="4"  BackgroundColor="White"/>
-            <ImageButton Source="orangecolor.png" Grid.Row="5" Grid.Column="5" BackgroundColor="White"/>
-            <ImageButton Source="yellowcolor.png" Grid.Row="5" Grid.Column="6" BackgroundColor="White"/>
-
+            <ScrollView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="9" Orientation="Horizontal" BackgroundColor="White">
+                <StackLayout Orientation="Horizontal">
+                    <Button BackgroundColor="Aqua" CornerRadius="30"  WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="DarkGoldenrod" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="Green" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="Gold" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="GreenYellow" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="Gray" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="Lavender" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="MintCream" CornerRadius="30" WidthRequest="50" HeightRequest="20" />
+                    <Button BackgroundColor="Yellow" CornerRadius="30" WidthRequest="50" HeightRequest="20"/>
+                </StackLayout>
+            </ScrollView>
         </Grid>
     </StackLayout>
 </pages:PopupPage>

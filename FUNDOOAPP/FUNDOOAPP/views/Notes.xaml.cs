@@ -13,6 +13,7 @@ namespace FUNDOOAPP.views
     using Firebase.Database.Query;
     using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Models;
+    using FUNDOOAPP.views.RemiderAndLocation;
     using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -25,6 +26,8 @@ namespace FUNDOOAPP.views
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class Notes : ContentPage
     {
+
+        public string noteBackGroundColor = "White"; 
         /// <summary>
         /// The firebase client
         /// </summary>
@@ -74,6 +77,17 @@ namespace FUNDOOAPP.views
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text });
             base.OnDisappearing();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            BackgroundColor = Color.Red;
+            this.noteBackGroundColor = "Red";
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+           // PopupNavigation.Instance.PushAsync(new MenuPage());
         }
     }
 }

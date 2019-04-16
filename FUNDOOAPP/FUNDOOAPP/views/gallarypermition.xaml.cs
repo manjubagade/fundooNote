@@ -11,6 +11,7 @@ namespace FUNDOOAPP.views
     using System.Threading.Tasks;
     using Firebase.Database;
     using Firebase.Storage;
+    using FUNDOOAPP.Repository;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
     using Xamarin.Forms;
@@ -23,6 +24,8 @@ namespace FUNDOOAPP.views
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class gallarypermition : ContentPage
      {
+
+        UserRepository userRepository = new UserRepository();
         /// <summary>
         /// The file
         /// </summary>
@@ -82,16 +85,17 @@ namespace FUNDOOAPP.views
         /// </summary>
         /// <param name="imageStream">The image stream.</param>
         /// <returns>return task</returns>
-        public async Task<string> StoreImages(Stream imageStream)
+        public async Task StoreImages(Stream imageStream)
         {
             FirebaseClient firebaseclint = new FirebaseClient("https://fundooapp-810e7.firebaseio.com/");
-            string timeStamp = GetTimestamp(DateTime.Now);
+           // string timeStamp = GetTimestamp(DateTime.Now);
             var stroageImage = await new FirebaseStorage("fundooapp-810e7.appspot.com")
-                .Child("XamarinMonkeys")
-                .Child("image_" + timeStamp + ".jpg")
+                .Child("XamarinMonkeys").Child("image.jpg")
+                //.Child("image_" + timeStamp + ".jpg")
                 .PutAsync(imageStream);
             string imgurl = stroageImage;
-            return imgurl;
+            // return imgurl;
+            await userRepository.GetimageSouce(imgurl);
         }
 
         /// <summary>

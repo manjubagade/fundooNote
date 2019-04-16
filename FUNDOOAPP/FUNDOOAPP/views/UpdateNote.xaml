@@ -47,10 +47,12 @@
             
             <StackLayout x:Name="UpdateNoteLayout" >
                 <StackLayout>
-                    <Editor x:Name="editor" Placeholder="Title" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
+                    <Editor x:Name="editor" Placeholder="                        Title                                            " 
+                            PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
                 </StackLayout>
                 <StackLayout>
-                    <Editor x:Name="editorNote" Placeholder="Notes" PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
+                    <Editor x:Name="editorNote" Placeholder="                       Notes                                             " 
+                            PlaceholderColor="Olive" FontSize="Large" FontAttributes="Bold" IsSpellCheckEnabled="True" AutoSize="TextChanges" ></Editor>
                 </StackLayout>
             </StackLayout>
 
@@ -63,6 +65,17 @@
                     <ImageButton x:Name="Listview" Source="plus.png" HeightRequest="30" WidthRequest="50" Padding="5,5,10,5" BackgroundColor="White" Clicked="Listview_Clicked" />
                     <Label x:Name="space" Text="                                                                                             "/>
                     <ImageButton Source="menuitem.png" HeightRequest="30" WidthRequest="35"  BackgroundColor="White" Clicked="ImageButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="End" BackgroundColor="White" 
+                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
+                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+
+                <StackLayout Orientation="Horizontal"    >
+                    <ImageButton x:Name="Listview1" Source="plus.png" HeightRequest="30" WidthRequest="50" Padding="5,5,10,5" BackgroundColor="White" Clicked="Listview_Clicked" />
+                    <Label x:Name="space1" Text="                                                                                             "/>
+                    <ImageButton Source="menuitem.png" HeightRequest="30" WidthRequest="35"  BackgroundColor="White" Clicked="ImageButton_Clicked" />
                 </StackLayout>
             </StackLayout>
         </RelativeLayout>

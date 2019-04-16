@@ -22,6 +22,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
     [XamlCompilation(XamlCompilationOptions.Compile)]
      public partial class MenuPage : PopupPage
     {
+        
         private NotesRepository notesRepository = new NotesRepository();
 
         private string noteKeys = string.Empty;

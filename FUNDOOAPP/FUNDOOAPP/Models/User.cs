@@ -25,5 +25,6 @@ namespace FUNDOOAPP.Models
         /// The last name.
         /// </value>
         public string LastName { get; set; }
+        public string Imageurl { get; set; }
     }
 }

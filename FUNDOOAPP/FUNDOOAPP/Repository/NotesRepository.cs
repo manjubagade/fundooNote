@@ -36,7 +36,9 @@ namespace FUNDOOAPP.Repository
                 Notes = item.Object.Notes,
                 noteType = item.Object.noteType,
                 Key = item.Key,
-                DateTime = item.Object.DateTime
+                DateTime = item.Object.DateTime,
+                Color=item.Object.Color
+     
             }).ToList();
 
             return notesData;
