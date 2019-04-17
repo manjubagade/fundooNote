@@ -77,6 +77,11 @@ namespace FUNDOOAPP.views
                 ToolbarItems.Add(this.deleted);
                 ToolbarItems.Add(this.Restoredata);
             }
+            else if (note.noteType == NoteType.ispin)
+            {
+                ToolbarItems.Add(PinCard1);
+            }
+            
         }
 
         /// <summary>
@@ -251,6 +256,29 @@ namespace FUNDOOAPP.views
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Unarchived_Clicked_1(object sender, EventArgs e)
         {
+            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+
+            Note newnote = new Note()
+            {
+                Title = editor.Text,
+                Notes = editorNote.Text
+            };
+            await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+            await Navigation.PushModalAsync(new Masterpage());
+        }
+
+        private async void Pincard_Clicked(object sender, EventArgs e)
+        {
+            string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
+            note.noteType = NoteType.ispin;
+            await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
+            await Navigation.PushModalAsync(new Masterpage());
+        }
+
+        private async void PinCard1_Clicked(object sender, EventArgs e)
+        {
+
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
 
             Note newnote = new Note()

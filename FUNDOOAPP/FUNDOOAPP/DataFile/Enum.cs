@@ -32,7 +32,12 @@ namespace FUNDOOAPP.DataFile
             /// <summary>
             /// The is trash
             /// </summary>
-            isTrash
+            isTrash,
+
+            /// <summary>
+            /// The ispin
+            /// </summary>
+            ispin
         }
     }
 }

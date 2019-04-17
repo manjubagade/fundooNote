@@ -223,6 +223,7 @@ namespace FUNDOOAPP.views
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             var notes = await this.notesRepository.GetNotesAsync(uid);
             IList<Note> listNote = new List<Note>();
+            IList<Note> listnote1 = new List<Note>();
             if (notes != null)
             {
                 foreach (var item in notes)
@@ -233,6 +234,14 @@ namespace FUNDOOAPP.views
                     }
                 }
                 this.NoteGridView(listNote);
+                foreach (var item in notes)
+                {
+                    if (item.noteType == NoteType.ispin )
+                    {
+                        listnote1.Add(item);
+                    }
+                }
+                this.NoteGridPin(listnote1);
             }
         }
 
@@ -254,7 +263,105 @@ namespace FUNDOOAPP.views
 
         private async void Searchbar_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SearchNotes());
+            await Navigation.PushAsync(new FindNotes());
         }
+
+        public void NoteGridPin(IList<Note> listpin)
+        {
+            try
+            {
+                GridLayout1.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(170) });
+                GridLayout1.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(170) });
+                GridLayout1.Margin = 5;
+                int rowCount = 0;
+                for (int row = 0; row < listpin.Count; row++)
+                {
+                    if (row % 2 == 0)
+                    {
+                        GridLayout1.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Auto) });
+                        rowCount++;
+                    }
+                }
+
+                var productIndex = 0;
+                var indexe = -1;
+
+                for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
+                {
+                    for (int columnIndex = 0; columnIndex < 2; columnIndex++)
+                    {
+                        Note data = null;
+                        indexe++;
+                        if (indexe < listpin.Count)
+                        {
+                            data = listpin[indexe];
+                        }
+
+                        if (productIndex >= listpin.Count)
+                        {
+                            break;
+                        }
+
+                        productIndex += 1;
+                        var label = new Xamarin.Forms.Label
+                        {
+                            Text = data.Title,
+                            TextColor = Color.Black,
+                            FontAttributes = FontAttributes.Bold,
+                            VerticalOptions = LayoutOptions.Center,
+                            HorizontalOptions = LayoutOptions.Start,
+                        };
+
+                        var labelKey = new Xamarin.Forms.Label
+                        {
+                            Text = data.Key,
+                            IsVisible = false
+                        };
+
+                        var content = new Xamarin.Forms.Label
+                        {
+                            Text = data.Notes,
+                            VerticalOptions = LayoutOptions.Center,
+                            HorizontalOptions = LayoutOptions.Start,
+                        };
+
+                        StackLayout layout = new StackLayout()
+                        {
+                            Spacing = 2,
+                            Margin = 2,
+                            BackgroundColor = Color.White
+                        };
+                        var tapGestureRecognizer = new TapGestureRecognizer();
+                        layout.Children.Add(labelKey);
+                        layout.Children.Add(label);
+                        layout.Children.Add(content);
+                        layout.GestureRecognizers.Add(tapGestureRecognizer);
+                        layout.Spacing = 2;
+                        layout.Margin = 2;
+                        layout.BackgroundColor = Color.White;
+
+                        var frame = new Frame();
+                        frame.BorderColor = Color.Black;
+                        // FrameColorSetter.GetColor(data, frame);
+                        frame.Content = layout;
+                        tapGestureRecognizer.Tapped += (object sender, EventArgs args) =>
+                        {
+                            StackLayout layout123 = (StackLayout)sender;
+                            IList<View> item = layout123.Children;
+                            Xamarin.Forms.Label KeyValue = (Xamarin.Forms.Label)item[0];
+                            var Keyval = KeyValue.Text;
+                            Navigation.PushAsync(new UpdateNote(Keyval));
+                        };
+
+                        GridLayout1.Children.Add(frame, columnIndex, rowIndex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
     }
 }

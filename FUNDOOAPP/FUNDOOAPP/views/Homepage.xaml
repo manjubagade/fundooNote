@@ -12,10 +12,19 @@
         <ToolbarItem x:Name="Delete" Text="Delete" Order="Secondary" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RelativeLayout>
+        <RelativeLayout> 
             
             <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" HeightRequest="480">
-                <Grid x:Name="GridLayout"></Grid>
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="PINNED" FontAttributes="Bold" TextColor="Black"></Label>
+                        <Grid x:Name="GridLayout1"></Grid>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="OTHERS" FontAttributes="Bold" TextColor="Black"></Label>
+                        <Grid x:Name="GridLayout"></Grid>
+                    </StackLayout>
+                </StackLayout>
             </ScrollView>
             
 

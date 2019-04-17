@@ -13,6 +13,7 @@ namespace FUNDOOAPP.views
     using Firebase.Database.Query;
     using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Models;
+    using FUNDOOAPP.views.Poppage;
     using FUNDOOAPP.views.RemiderAndLocation;
     using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
@@ -87,7 +88,7 @@ namespace FUNDOOAPP.views
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-           // PopupNavigation.Instance.PushAsync(new MenuPage());
+           await PopupNavigation.Instance.PushAsync(new Popupmenupage());
         }
     }
 }

@@ -8,7 +8,7 @@
                 <OnPlatform x:DataType="FileImageSource" Android="Alaram.png"></OnPlatform> 
             </ToolbarItem.Icon>
         </ToolbarItem>
-        <ToolbarItem x:Name="pincard" >
+        <ToolbarItem x:Name="pincard"  Clicked="Pincard_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:DataType="FileImageSource" Android="pinicon.png"></OnPlatform>
             </ToolbarItem.Icon>
@@ -38,6 +38,11 @@
                 <OnPlatform x:DataType="FileImageSource" Android="Restore.png">
                     
                 </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem x:Name="PinCard1" Clicked="PinCard1_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:DataType="FileImageSource" Android="unpin.png"></OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
         
