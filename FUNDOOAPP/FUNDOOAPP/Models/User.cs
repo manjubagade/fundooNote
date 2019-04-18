@@ -3,6 +3,8 @@
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
+using System;
+
 namespace FUNDOOAPP.Models
 {
     /// <summary>
@@ -19,12 +21,21 @@ namespace FUNDOOAPP.Models
         public string FirstName { get; set; }
 
         /// <summary>
+        /// Gets or sets the imageurl.
+        /// </summary>
+        /// <value>
+        /// The imageurl.
+        /// </value>
+        public string Imageurl { get; set; }
+
+        /// <summary>
         /// Gets or sets the last name.
         /// </summary>
         /// <value>
         /// The last name.
         /// </value>
         public string LastName { get; set; }
-        public string Imageurl { get; set; }
+
+        
     }
 }

@@ -220,28 +220,43 @@ namespace FUNDOOAPP.views
         /// </remarks>
         protected async override void OnAppearing()
         {
-            var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            var notes = await this.notesRepository.GetNotesAsync(uid);
-            IList<Note> listNote = new List<Note>();
-            IList<Note> listnote1 = new List<Note>();
-            if (notes != null)
+            try
             {
-                foreach (var item in notes)
+
+
+                var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+                var notes = await this.notesRepository.GetNotesAsync(uid);
+                IList<Note> listNote = new List<Note>();
+                IList<Note> listnote1 = new List<Note>();
+                if (notes != null)
                 {
-                    if (item.noteType == NoteType.isNote)
+                    foreach (var item in notes)
                     {
-                        listNote.Add(item);
+                        if (item.noteType == NoteType.isNote)
+                        {
+                            listNote.Add(item);
+                        }
                     }
+                    this.NoteGridView(listNote);
+                    foreach (var item in notes)
+                    {
+                        if (item.noteType == NoteType.ispin)
+                        {
+                            listnote1.Add(item);
+                        }
+                    }
+                    this.NoteGridPin(listnote1);
                 }
-                this.NoteGridView(listNote);
-                foreach (var item in notes)
+                UserRepository userRepository = new UserRepository();
+                User user = await userRepository.GetUserById();
+                if (user.Imageurl != null)
                 {
-                    if (item.noteType == NoteType.ispin )
-                    {
-                        listnote1.Add(item);
-                    }
+                    ImageSource profileImage = user.Imageurl;
                 }
-                this.NoteGridPin(listnote1);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -363,5 +378,9 @@ namespace FUNDOOAPP.views
             }
         }
 
+        private void Profile_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new gallarypermition());
+        }
     }
 }

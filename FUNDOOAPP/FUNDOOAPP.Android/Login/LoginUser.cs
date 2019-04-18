@@ -105,5 +105,7 @@ namespace FUNDOOAPP.Droid.Login
             string userId = FirebaseAuth.Instance.CurrentUser.Uid;
             return userId;
         }
+
+
     }
 }

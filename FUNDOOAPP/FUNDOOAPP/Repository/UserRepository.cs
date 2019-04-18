@@ -6,6 +6,9 @@
 namespace FUNDOOAPP.Repository
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Firebase.Database;
     using Firebase.Database.Query;
@@ -49,14 +52,34 @@ namespace FUNDOOAPP.Repository
                 return null;
             }  
         }
-        public async Task<string> GetimageSouce(string imagesouce)
+
+        public async Task GetimageSouce(string imagesouce)
         {
             string uid =  DependencyService.Get<IFirebaseAuthenticator>().User();
-            if(uid ==null)
+            User user = await this.GetUserById();
+            if(uid != null && user != null)
             {
-                await firebaseclient.Child("User").Child(uid).Child("Userinfo").PostAsync<User>(new User() { Imageurl = imagesouce });
+                    await firebaseclient.Child("User").Child(uid).Child("Userinfo").PutAsync<User>(new User() { FirstName = user.FirstName, LastName = user.LastName, Imageurl = imagesouce });
             }
-            return uid;
+        }
+
+        public async Task<User> GetUserById()
+        {
+            try
+            {
+                string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+                //User user;
+                if (uid != null)
+                {
+                    User user = await this.firebaseclient.Child("User").Child(uid).Child("Userinfo").OnceSingleAsync<User>();
+                    return user;
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            return null;
         }
     }
 }

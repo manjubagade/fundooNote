@@ -17,31 +17,26 @@ namespace FUNDOOAPP.views
 	public partial class FindNotes : ContentPage
 	{
         public List<Note> noteData;
-        public FindNotes ()
+
+
+        public FindNotes()
 		{
-			InitializeComponent ();
+			this.InitializeComponent ();
             this.GetNoteData();
-            list.ItemsSource = noteData;
+            list.ItemsSource = this.noteData;
         }
 
         private  void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(e.NewTextValue))
             {
-                if (string.IsNullOrEmpty(e.NewTextValue))
-                {
-                    list.ItemsSource = this.noteData;
-                }
-                else
-                {
-                    list.ItemsSource = this.noteData.Where(x => x.Title.ToLower().Contains(e.NewTextValue.ToLower())
-                    && x.Notes.ToLower().Contains(e.NewTextValue.ToLower()));
-                }
+                list.ItemsSource = this.noteData;
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
-            }  
+                list.ItemsSource = this.noteData.Where(x => x.Title.ToLower().Contains(e.NewTextValue.ToLower())
+                && x.Notes.ToLower().Contains(e.NewTextValue.ToLower()));
+            }
         }
 
         public  async void GetNoteData()
