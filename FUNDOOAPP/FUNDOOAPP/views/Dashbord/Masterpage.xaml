@@ -9,8 +9,8 @@
             <Grid BackgroundColor="Transparent">
                 <Grid>
                     <StackLayout>
+                       
                         <StackLayout HorizontalOptions="Center" >
-
                             <AbsoluteLayout>
                                 <Label Text="FUNDOO NOTES" TextColor="Black" FontSize="Large"  FontAttributes="Bold" Style="{DynamicResource FundooApp}" BackgroundColor="White"/>
                             </AbsoluteLayout>

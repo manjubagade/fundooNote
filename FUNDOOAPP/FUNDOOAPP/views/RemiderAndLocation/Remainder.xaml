@@ -36,7 +36,7 @@
             <TimePicker x:Name="timepicker" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8"/>
             <Picker x:Name="mypicker" Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="8" />
             <Button Text="Cancel" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"/>
-            <Button Text="Save" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" />
+            <Button Text="Save" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" Clicked="Button_Clicked"/>
 
         </Grid>
     </StackLayout>

@@ -32,6 +32,11 @@ namespace FUNDOOAPP.views.RemiderAndLocation
             mypicker.Items.Add("Monthly");
             mypicker.Items.Add("Yearly");
             mypicker.Items.Add("Custom");
-         }  
+         }
+
+        private async  void Button_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

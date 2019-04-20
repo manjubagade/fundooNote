@@ -1,6 +1,7 @@
 using FUNDOOAPP.views;
 using NUnit.Framework;
-
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -18,6 +19,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
+           
         }
 
         [Test]
@@ -26,6 +28,13 @@ namespace Tests
             var result = this.signup.CheckValidation();
             Assert.IsTrue(result);
         }
-
+        [Test]
+        public async Task Test3()
+        {
+            var root = new Signup();
+            var page = new Signup();
+            await root.Navigation.PushAsync(page);
+            Assert.AreEqual(root.Navigation.NavigationStack.Last(), page);
+        }
     }
 }

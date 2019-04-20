@@ -6,10 +6,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="Searchbar" Text="Search note                     " Priority="0" Clicked="Searchbar_Clicked"/>
         <ToolbarItem x:Name="Cancel" Order="Primary"  Icon="grids.png" Clicked="Cancel_Clicked"/>
-        <!--<ToolbarItem x:Name="Profile" Icon="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"
-                     Command="{Binding DoSomethingCommand}" Clicked="Profile_Clicked">
-            --><!--<Image Source="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png"></Image>--><!--
-        </ToolbarItem>-->
+        <ToolbarItem x:Name="Profile" Icon="manju.png"
+                     Clicked="Profile_Clicked"/>
         <ToolbarItem x:Name="save"  Text="SIGN OUT"  Icon="sigout.png" Clicked="Save_Clicked" Order="Secondary"/>
         <ToolbarItem x:Name="Another" Text="ANOTHER ACCOUNT" Order="Secondary" />
         <ToolbarItem x:Name="Delete" Text="Delete" Order="Secondary" />
