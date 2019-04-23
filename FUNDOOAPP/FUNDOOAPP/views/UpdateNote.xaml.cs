@@ -14,6 +14,7 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Repository;
     using FUNDOOAPP.views.Dashbord;
     using FUNDOOAPP.views.RemiderAndLocation;
+    using Plugin.Toast;
     using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -80,6 +81,7 @@ namespace FUNDOOAPP.views
             else if (note.noteType == NoteType.ispin)
             {
                 ToolbarItems.Add(PinCard1);
+
             }
             
         }
@@ -200,6 +202,7 @@ namespace FUNDOOAPP.views
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
+            CrossToastPopUp.Current.ShowToastMessage("Notes in Archived");
             await Navigation.PushModalAsync(new Masterpage());
         }
 
@@ -224,6 +227,7 @@ namespace FUNDOOAPP.views
            if (answer == true)
             {
                 this.DeleteNotes();
+                CrossToastPopUp.Current.ShowToastMessage("Notes is Deleted");
                 await Navigation.PushModalAsync(new Masterpage());
             }
             else
@@ -246,6 +250,7 @@ namespace FUNDOOAPP.views
                 Notes = editorNote.Text
             };
           await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+            CrossToastPopUp.Current.ShowToastMessage("Note is Restore");
             await Navigation.PushModalAsync(new Masterpage());
         }
 
@@ -264,6 +269,7 @@ namespace FUNDOOAPP.views
                 Notes = editorNote.Text
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
+            CrossToastPopUp.Current.ShowToastMessage("Notes in UnArchived");
             await Navigation.PushModalAsync(new Masterpage());
         }
 

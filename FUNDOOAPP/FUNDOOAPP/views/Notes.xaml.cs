@@ -15,6 +15,7 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Models;
     using FUNDOOAPP.views.Poppage;
     using FUNDOOAPP.views.RemiderAndLocation;
+    using Plugin.Toast;
     using Rg.Plugins.Popup.Services;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -78,6 +79,7 @@ namespace FUNDOOAPP.views
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text });
             base.OnDisappearing();
+            CrossToastPopUp.Current.ShowToastMessage("Notes Created");
         }
 
         private void Button_Clicked(object sender, EventArgs e)

@@ -5,7 +5,9 @@
 //-----------------------------------------------------------------------
 namespace FUNDOOAPP.views.RemiderAndLocation
 {
+    using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Repository;
+    using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
    
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -36,7 +38,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
 
         private async  void Button_Clicked(object sender, System.EventArgs e)
         {
-
+                
         }
     }
 }

@@ -12,6 +12,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
     using FUNDOOAPP.Models;
     using FUNDOOAPP.Repository;
     using FUNDOOAPP.views.Dashbord;
+    using Plugin.Toast;
     using Rg.Plugins.Popup.Pages;
     using Rg.Plugins.Popup.Services;
     using Xamarin.Essentials;
@@ -66,6 +67,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
                 await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
                 await Navigation.PushModalAsync(new Masterpage());
                 await PopupNavigation.Instance.PopAsync();
+                CrossToastPopUp.Current.ShowToastMessage("Note Moved to Trash");
             }
             catch (Exception ex)
             {
