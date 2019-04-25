@@ -8,6 +8,7 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Models;
     using FUNDOOAPP.Repository;
+    using FUNDOOAPP.ViewModel;
     using FUNDOOAPP.views.Dashbord;
     using System;
     using System.Collections.Generic;
@@ -101,7 +102,7 @@ namespace FUNDOOAPP.views
                         {
                             Spacing = 2,
                             Margin = 2,
-                            BackgroundColor = Color.White
+                           // BackgroundColor = Color.White
                         };
                         var tapGestureRecognizer = new TapGestureRecognizer();
                         layout.Children.Add(labelKey);
@@ -110,10 +111,11 @@ namespace FUNDOOAPP.views
                         layout.GestureRecognizers.Add(tapGestureRecognizer);
                         layout.Spacing = 2;
                         layout.Margin = 2;
-                        layout.BackgroundColor = Color.White;
+                      //  layout.BackgroundColor = Color.White;
 
                         var frame = new Frame();
                         frame.BorderColor = Color.Black;
+                        FrameColorSetter.GetColor(data, frame);
                         frame.Content = layout;
                         tapGestureRecognizer.Tapped += (object sender, EventArgs args) =>
                         {

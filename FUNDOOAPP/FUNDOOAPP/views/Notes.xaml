@@ -23,9 +23,22 @@
                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
+                
                 <StackLayout Orientation="Horizontal" BackgroundColor="White">
                     <ImageButton Source="plus.png" BackgroundColor="White"/>
-                    <Label Text="                                                                                      "/>
+                    <ScrollView Orientation="Horizontal" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal" BackgroundColor="White">
+                            <Button BackgroundColor="Aqua" x:Name="Aque" CornerRadius="30"  WidthRequest="35" HeightRequest="35" Clicked="Aque_Clicked"/>
+                            <Button BackgroundColor="DarkGoldenrod" x:Name="DarkGoldenrod" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="DarkGoldenrod_Clicked" />
+                            <Button BackgroundColor="Green" x:Name="Green" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Green_Clicked"/>
+                            <Button BackgroundColor="Gold" x:Name="Gold" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Gold_Clicked" />
+                            <Button BackgroundColor="GreenYellow" x:Name="GreenYellow" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="GreenYellow_Clicked"/>
+                            <Button BackgroundColor="Gray" x:Name="Gray" CornerRadius="30" WidthRequest="35" HeightRequest="35"  Clicked="Gray_Clicked"/>
+                            <Button BackgroundColor="Lavender" x:Name="Lavender" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Lavender_Clicked" />
+                            <Button BackgroundColor="Red" x:Name="Red" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Red_Clicked"/>
+                            <Button BackgroundColor="Yellow" x:Name="Yellow" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Yellow_Clicked"/>
+                        </StackLayout>
+                    </ScrollView>
                     <ImageButton Source="menuitem.png" BackgroundColor="White" Clicked="ImageButton_Clicked"/>
                 </StackLayout>
             </StackLayout>

@@ -28,7 +28,7 @@ namespace FUNDOOAPP.views
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class Notes : ContentPage
     {
-
+        public Color ColorNotes { get; set; }
         public string noteBackGroundColor = "White"; 
         /// <summary>
         /// The firebase client
@@ -77,7 +77,7 @@ namespace FUNDOOAPP.views
          protected override void OnDisappearing()
         {
             var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-            var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text });
+            var response = this.firebaseclint.Child("User").Child(uid).Child("Note").PostAsync<Note>(new Note() { Title = title.Text, Notes = notess.Text, ColorNote=this.noteBackGroundColor });
             base.OnDisappearing();
             CrossToastPopUp.Current.ShowToastMessage("Notes Created");
         }
@@ -91,6 +91,60 @@ namespace FUNDOOAPP.views
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
            await PopupNavigation.Instance.PushAsync(new Popupmenupage());
+        }
+
+        private void Aque_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Aqua;
+            this.noteBackGroundColor = "Aqua";
+        }
+
+        private void DarkGoldenrod_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.DarkGoldenrod;
+            this.noteBackGroundColor = "DarkGoldenrod";
+        }
+
+        private void Green_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Green;
+            this.noteBackGroundColor = "Green";
+        }
+
+        private void Gold_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gold;
+            this.noteBackGroundColor = "Gold";
+        }
+
+        private void GreenYellow_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.GreenYellow;
+            this.noteBackGroundColor = "GreenYellow";
+        }
+
+        private void Gray_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gray;
+            this.noteBackGroundColor = "Gray";
+        }
+
+        private void Lavender_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Lavender;
+            this.noteBackGroundColor = "Lavender";
+        }
+
+        private void Red_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Red;
+            this.noteBackGroundColor = "Red";
+        }
+
+        private void Yellow_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Yellow;
+            this.noteBackGroundColor = "Yellow";
         }
     }
 }

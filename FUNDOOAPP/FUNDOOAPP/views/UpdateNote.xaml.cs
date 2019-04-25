@@ -27,6 +27,9 @@ namespace FUNDOOAPP.views
     /// </summary>
     public partial class UpdateNote : ContentPage
     {
+
+        public Color ColorNotes { get; set; }
+        public string noteBackGroundColor = "White";
         /// <summary>
         /// this class UpdateNote instance
         /// </summary>
@@ -111,7 +114,8 @@ namespace FUNDOOAPP.views
                 Note newnote = new Note()
                 {
                     Title = editor.Text,
-                    Notes = editorNote.Text
+                    Notes = editorNote.Text,
+                    ColorNote=this.noteBackGroundColor
                 };
                 this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
 
@@ -201,6 +205,7 @@ namespace FUNDOOAPP.views
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.isArchive;
+            note.ColorNote = this.noteBackGroundColor;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             CrossToastPopUp.Current.ShowToastMessage("Notes in Archived");
             await Navigation.PushModalAsync(new Masterpage());
@@ -247,7 +252,9 @@ namespace FUNDOOAPP.views
             Note newnote = new Note()
             {
                 Title = editor.Text,
-                Notes = editorNote.Text
+                Notes = editorNote.Text,
+                ColorNote=this.noteBackGroundColor
+                
             };
           await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
             CrossToastPopUp.Current.ShowToastMessage("Note is Restore");
@@ -266,7 +273,9 @@ namespace FUNDOOAPP.views
             Note newnote = new Note()
             {
                 Title = editor.Text,
-                Notes = editorNote.Text
+                Notes = editorNote.Text,
+                ColorNote=this.noteBackGroundColor
+                
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
             CrossToastPopUp.Current.ShowToastMessage("Notes in UnArchived");
@@ -278,6 +287,7 @@ namespace FUNDOOAPP.views
             string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             note.noteType = NoteType.ispin;
+            note.ColorNote = this.noteBackGroundColor;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
         }
@@ -290,10 +300,66 @@ namespace FUNDOOAPP.views
             Note newnote = new Note()
             {
                 Title = editor.Text,
-                Notes = editorNote.Text
+                Notes = editorNote.Text,
+                ColorNote=this.noteBackGroundColor
+                
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
             await Navigation.PushModalAsync(new Masterpage());
         }
-    }
+
+        private void Aque_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Aqua;
+            this.noteBackGroundColor = "Aqua";
+        }
+
+        private void DarkGoldenrod_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.DarkGoldenrod;
+            this.noteBackGroundColor = "DarkGoldenrod";
+        }
+
+        private void Green_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Green;
+            this.noteBackGroundColor = "Green";
+        }
+
+        private void Gold_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gold;
+            this.noteBackGroundColor = "Gold";
+        }
+
+        private void GreenYellow_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.GreenYellow;
+            this.noteBackGroundColor = "GreenYellow";
+        }
+
+        private void Gray_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Gray;
+            this.noteBackGroundColor = "Gray";
+        }
+
+        private void Lavender_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Lavender;
+            this.noteBackGroundColor = "Lavender";
+        }
+
+        private void Red_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Red;
+            this.noteBackGroundColor = "Red";
+        }
+
+        private void Yellow_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Yellow;
+            this.noteBackGroundColor = "Yellow";
+        }
+    } 
 } 

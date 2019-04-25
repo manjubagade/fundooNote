@@ -54,6 +54,6 @@ namespace FUNDOOAPP.Models
         /// </value>
         public string DateTime { get; set; }
 
-        public string Color { get; set; }
+        public string ColorNote { get; set; }
     }
 }

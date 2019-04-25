@@ -11,58 +11,67 @@ namespace FUNDOOAPP.ViewModel
     {
         public static void GetColor(Note note, Frame frame)
         {
-            if (note.Color.Equals("Red"))
+            if (note.ColorNote.Equals("Red"))
             {
                 frame.BackgroundColor = Color.Red;
                 return;
             }
 
-            if (note.Color.Equals("Aqua"))
+            if (note.ColorNote.Equals("Aqua"))
             {
                 frame.BackgroundColor = Color.Aqua;
                 return;
             }
 
-            if (note.Color.Equals("DarkGoldenrod"))
+            if (note.ColorNote.Equals("DarkGoldenrod"))
             {
                 frame.BackgroundColor = Color.DarkGoldenrod;
                 return;
             }
 
-            if (note.Color.Equals("Gold"))
+            if (note.ColorNote.Equals("Gold"))
             {
                 frame.BackgroundColor = Color.Gold;
                 return;
             }
 
-            if (note.Color.Equals("GreenYellow"))
+            if (note.ColorNote.Equals("GreenYellow"))
             {
                 frame.BackgroundColor = Color.GreenYellow;
                 return;
             }
 
-            if (note.Color.Equals("Gray"))
+            if (note.ColorNote.Equals("Gray"))
             {
                 frame.BackgroundColor = Color.Gray;
                 return;
             }
 
-            if (note.Color.Equals("Lavender"))
+            if (note.ColorNote.Equals("Lavender"))
             {
                 frame.BackgroundColor = Color.Green;
                 return;
             }
 
-            if (note.Color.Equals("MintCream"))
+            if (note.ColorNote.Equals("MintCream"))
             {
                 frame.BackgroundColor = Color.MintCream;
                 return;
             }
 
-            if (note.Color.Equals("White"))
+            if (note.ColorNote.Equals("White"))
             {
                 frame.BackgroundColor = Color.White;
                 return;
+            }
+            if(note.ColorNote.Equals("Green"))
+            {
+                frame.BackgroundColor = Color.Green;
+                return;
+            }
+            if(note.ColorNote.Equals("Yellow"))
+            {
+                frame.BackgroundColor = Color.Yellow;
             }
 
 
