@@ -37,6 +37,10 @@
                             <Button BackgroundColor="Lavender" x:Name="Lavender" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Lavender_Clicked" />
                             <Button BackgroundColor="Red" x:Name="Red" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Red_Clicked"/>
                             <Button BackgroundColor="Yellow" x:Name="Yellow" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Yellow_Clicked"/>
+                            <Button BackgroundColor="Orange" x:Name="orange" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Orange_Clicked"/>
+                            <Button BackgroundColor="Teal" x:Name="teal" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Teal_Clicked"/>
+                            <Button BackgroundColor="Brown" x:Name="Brown" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Brown_Clicked"/>
+                            <Button BackgroundColor="Purple" x:Name="purple" CornerRadius="30" WidthRequest="35" HeightRequest="35" Clicked="Purple_Clicked"/>
                         </StackLayout>
                     </ScrollView>
                     <ImageButton Source="menuitem.png" BackgroundColor="White" Clicked="ImageButton_Clicked"/>

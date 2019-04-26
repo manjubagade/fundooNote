@@ -72,9 +72,28 @@ namespace FUNDOOAPP.ViewModel
             if(note.ColorNote.Equals("Yellow"))
             {
                 frame.BackgroundColor = Color.Yellow;
+                return;
             }
-
-
+            if (note.ColorNote.Equals("Orange"))
+            {
+                frame.BackgroundColor = Color.Orange;
+                return;
+            }
+            if (note.ColorNote.Equals("Teal"))
+            {
+                frame.BackgroundColor = Color.Teal;
+                return;
+            }
+            if (note.ColorNote.Equals("Purple"))
+            {
+                frame.BackgroundColor = Color.Purple;
+                return;
+            }
+            if (note.ColorNote.Equals("Brown"))
+            {
+                frame.BackgroundColor = Color.Brown;
+                return;
+            }
 
         }
     }

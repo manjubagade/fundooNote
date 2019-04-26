@@ -146,5 +146,29 @@ namespace FUNDOOAPP.views
             this.BackgroundColor = Color.Yellow;
             this.noteBackGroundColor = "Yellow";
         }
+
+        private void Orange_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Orange;
+            this.noteBackGroundColor = "Orange";
+        }
+
+        private void Teal_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Teal;
+            this.noteBackGroundColor = "Teal";
+        }
+
+        private void Brown_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Brown;
+            this.noteBackGroundColor = "Brown";
+        }
+
+        private void Purple_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Purple;
+            this.noteBackGroundColor = "Purple";
+        }
     }
 }

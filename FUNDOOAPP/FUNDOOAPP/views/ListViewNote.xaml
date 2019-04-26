@@ -23,7 +23,7 @@
                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
 
                 <StackLayout Orientation="Horizontal" >
-                    <Button Text=" Take a note......"  TextColor="Black"   BackgroundColor="White"  />
+                    <Button Text=" Take a note......" x:Name="Takenote" TextColor="Black"   BackgroundColor="White" Clicked="Takenote_Clicked"/>
                     <ImageButton  Source="checking.png" HeightRequest="15" WidthRequest="50" BackgroundColor="White"  Padding="5,10,5,10"/>
                     <ImageButton Source="pencil.png" HeightRequest="15" WidthRequest="50" BackgroundColor="White" Padding="5,10,5,10"/>
                     <ImageButton Source="recorder.png" HeightRequest="15" WidthRequest="50" BackgroundColor="White" Padding="5,10,5,10" />

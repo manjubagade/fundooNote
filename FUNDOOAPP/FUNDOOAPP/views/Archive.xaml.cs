@@ -133,6 +133,7 @@ namespace FUNDOOAPP.views
 
                         var frame = new Frame();
                         frame.BorderColor = Color.Black;
+                        frame.CornerRadius = 25;
                         FrameColorSetter.GetColor(data, frame);
                         frame.Content = layout;
                         tapGestureRecognizer.Tapped += (object sender, EventArgs args) =>
@@ -152,6 +153,11 @@ namespace FUNDOOAPP.views
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ListViewNote());
         }
     }
 }

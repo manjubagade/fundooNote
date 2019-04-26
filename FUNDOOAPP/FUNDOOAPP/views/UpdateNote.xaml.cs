@@ -75,6 +75,8 @@ namespace FUNDOOAPP.views
             else if (note.noteType == NoteType.isArchive)
             {
                 ToolbarItems.Add(this.unarchived);
+                ToolbarItems.Add(this.alaram);
+                ToolbarItems.Add(this.pincard);
             }
             else if (note.noteType == NoteType.isTrash)
             {
@@ -207,8 +209,9 @@ namespace FUNDOOAPP.views
             note.noteType = NoteType.isArchive;
             note.ColorNote = this.noteBackGroundColor;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
-            CrossToastPopUp.Current.ShowToastMessage("Notes in Archived");
-            await Navigation.PushModalAsync(new Masterpage());
+            CrossToastPopUp.Current.ShowToastMessage("Note is Archived");
+            // await Navigation.PushModalAsync(new Masterpage());
+            await Navigation.PopAsync(true);
         }
 
         /// <summary>
@@ -278,8 +281,9 @@ namespace FUNDOOAPP.views
                 
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
-            CrossToastPopUp.Current.ShowToastMessage("Notes in UnArchived");
-            await Navigation.PushModalAsync(new Masterpage());
+            CrossToastPopUp.Current.ShowToastMessage("Note is UnArchived");
+            //await Navigation.PushModalAsync(new Masterpage());
+            await Navigation.PopAsync(true);
         }
 
         private async void Pincard_Clicked(object sender, EventArgs e)
@@ -289,7 +293,8 @@ namespace FUNDOOAPP.views
             note.noteType = NoteType.ispin;
             note.ColorNote = this.noteBackGroundColor;
             await this.notesRepository.UpdateNoteAsync(note, this.noteKeys, uid);
-            await Navigation.PushModalAsync(new Masterpage());
+            CrossToastPopUp.Current.ShowToastMessage("Note is Pinned");
+            // await Navigation.PushModalAsync(new Masterpage());
         }
 
         private async void PinCard1_Clicked(object sender, EventArgs e)
@@ -305,7 +310,9 @@ namespace FUNDOOAPP.views
                 
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
-            await Navigation.PushModalAsync(new Masterpage());
+            CrossToastPopUp.Current.ShowToastMessage("Note is UnArchived");
+            // await Navigation.PushModalAsync(new Masterpage());
+            //await Navigation.PopAsync(true);
         }
 
         private void Aque_Clicked(object sender, EventArgs e)
@@ -360,6 +367,30 @@ namespace FUNDOOAPP.views
         {
             this.BackgroundColor = Color.Yellow;
             this.noteBackGroundColor = "Yellow";
+        }
+
+        private void Orange_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Orange;
+            this.noteBackGroundColor = "Orange";
+        }
+
+        private void Teal_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Teal;
+            this.noteBackGroundColor = "Teal";
+        }
+
+        private void Brown_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Brown;
+            this.noteBackGroundColor = "Brown";
+        }
+
+        private void Purple_Clicked(object sender, EventArgs e)
+        {
+            this.BackgroundColor = Color.Purple;
+            this.noteBackGroundColor = "Purple";
         }
     } 
 } 

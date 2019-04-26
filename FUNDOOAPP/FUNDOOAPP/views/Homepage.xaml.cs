@@ -129,7 +129,7 @@ namespace FUNDOOAPP.views
                     {
                         GridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Auto) });
                         rowCount++;
-                    }
+                    } 
                 }
 
                 var productIndex = 0;
@@ -180,17 +180,22 @@ namespace FUNDOOAPP.views
                             Margin = 2,
                            // BackgroundColor = Color.White
                         };
+
+                        var panGesture = new PanGestureRecognizer();
+                        panGesture.PanUpdated += OnPanUpdated;
                         var tapGestureRecognizer = new TapGestureRecognizer();
                         layout.Children.Add(labelKey);
                         layout.Children.Add(label);
                         layout.Children.Add(content);
                         layout.GestureRecognizers.Add(tapGestureRecognizer);
+                        layout.GestureRecognizers.Add(panGesture);
                         layout.Spacing = 2;
                         layout.Margin = 2;
                         //layout.BackgroundColor = Color.White;
 
                         var frame = new Frame();
                         frame.BorderColor = Color.Black;
+                        frame.CornerRadius = 25;
                         FrameColorSetter.GetColor(data, frame);
                         frame.Content = layout;
                         tapGestureRecognizer.Tapped += (object sender, EventArgs args) =>
@@ -209,6 +214,26 @@ namespace FUNDOOAPP.views
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        double x, y;
+
+        void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+        {
+            switch (e.StatusType)
+            {
+
+                case GestureStatus.Running:
+                    // Translate and ensure we don't pan beyond the wrapped user interface element bounds.
+                    Content.TranslationX = Math.Max(Math.Min(0, x + e.TotalX), -Math.Abs(Content.Width - App.ScreenWidth));
+                    Content.TranslationY = Math.Max(Math.Min(0, y + e.TotalY), -Math.Abs(Content.Height - App.ScreenHeight));
+                    break;
+
+                case GestureStatus.Completed:
+                    // Store the translation applied during the pan
+                    x = Content.TranslationX;
+                    y = Content.TranslationY;
+                    break;
             }
         }
 
