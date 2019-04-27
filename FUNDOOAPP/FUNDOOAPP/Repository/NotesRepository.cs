@@ -37,7 +37,8 @@ namespace FUNDOOAPP.Repository
                 noteType = item.Object.noteType,
                 Key = item.Key,
                 DateTime = item.Object.DateTime,
-               ColorNote=item.Object.ColorNote
+               ColorNote=item.Object.ColorNote,
+               LabelsList = item.Object.LabelsList
      
             }).ToList();
 
@@ -64,7 +65,7 @@ namespace FUNDOOAPP.Repository
         /// <param name="uid">The user id.</param>
         public async Task UpdateNoteAsync(Note note, string key, string uid)
         {
-            await this.firebaseclient.Child("User").Child(uid).Child("Note").Child(key).PutAsync<Note>(new Note() { Title = note.Title, Notes = note.Notes, noteType = note.noteType,ColorNote=note.ColorNote });
+            await this.firebaseclient.Child("User").Child(uid).Child("Note").Child(key).PutAsync<Note>(new Note() { Title = note.Title, Notes = note.Notes, noteType = note.noteType,ColorNote=note.ColorNote,LabelsList=note.LabelsList });
         }
 
         /// <summary>

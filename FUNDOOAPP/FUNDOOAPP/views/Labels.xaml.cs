@@ -7,6 +7,7 @@ namespace FUNDOOAPP.views
 {
     using System;
     using FUNDOOAPP.Database;
+    using FUNDOOAPP.Models;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;    
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -72,6 +73,13 @@ namespace FUNDOOAPP.views
             {
                 Console.WriteLine(exception.Message);
             }
+        }
+
+        private void LstLabels_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var entity = (LabelNotes)e.SelectedItem;
+            var temp = entity.LabelKey;
+            Navigation.PushAsync(new EditLabels(temp));
         }
     }
 }

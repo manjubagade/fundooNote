@@ -17,5 +17,8 @@ namespace FUNDOOAPP.Models
         /// The label note.
         /// </value>
         public string Label { get; set; }
+
+
+        public string LabelKey { get; set; }
     }
 }

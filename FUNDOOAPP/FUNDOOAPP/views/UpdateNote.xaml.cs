@@ -12,6 +12,7 @@ namespace FUNDOOAPP.views
     using FUNDOOAPP.Interfaces;
     using FUNDOOAPP.Models;
     using FUNDOOAPP.Repository;
+    using FUNDOOAPP.ViewModel;
     using FUNDOOAPP.views.Dashbord;
     using FUNDOOAPP.views.RemiderAndLocation;
     using Plugin.Toast;
@@ -65,6 +66,7 @@ namespace FUNDOOAPP.views
             Note note = await this.notesRepository.GetNoteByKeyAsync(this.noteKeys, uid);
             editor.Text = note.Title;
             editorNote.Text = note.Notes;
+            this.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(note));
             ToolbarItems.Clear();
             if (note.noteType == NoteType.isNote)
             {
@@ -310,7 +312,7 @@ namespace FUNDOOAPP.views
                 
             };
             await this.notesRepository.UpdateNoteAsync(newnote, this.noteKeys, uid);
-            CrossToastPopUp.Current.ShowToastMessage("Note is UnArchived");
+            CrossToastPopUp.Current.ShowToastMessage("Note is UnPinnned");
             // await Navigation.PushModalAsync(new Masterpage());
             //await Navigation.PopAsync(true);
         }

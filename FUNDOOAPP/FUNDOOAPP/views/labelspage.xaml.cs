@@ -5,9 +5,12 @@ namespace FUNDOOAPP.views
     using System;
     using System.Collections.Generic;
     using FUNDOOAPP.Database;
+    using FUNDOOAPP.Interfaces;
+    using FUNDOOAPP.Models;
+    using FUNDOOAPP.Repository;
     using Plugin.InputKit.Shared.Controls;
     using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;    
+    using Xamarin.Forms.Xaml;
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
     /// <summary>
@@ -16,13 +19,17 @@ namespace FUNDOOAPP.views
     /// <seealso cref="Xamarin.Forms.ContentPage" />
     public partial class labelspage : ContentPage
     {
+        string uid = DependencyService.Get<IFirebaseAuthenticator>().User();
+        NotesRepository notesRepository = new NotesRepository();
+        private string noteKey = string.Empty;
         /// <summary>
         /// Initializes a new instance of the <see cref="labelspage"/> class.
         /// </summary>
-        public labelspage()
-         {
-         this.InitializeComponent();
-       }
+        public labelspage(string labelkeys)
+        {
+            noteKey = labelkeys;
+            this.InitializeComponent();
+        }
         Firebasedata firebasedata = new Firebasedata();
 
         /// <summary>
@@ -57,6 +64,31 @@ namespace FUNDOOAPP.views
             if (checkbox.IsChecked)
             {
                 checkbox.Color = Color.Black;
+                StackLayout stack = (StackLayout)sender;
+                IList<View> view = stack.Children;
+                Label temp = (Label)view[1];
+                var value = temp.Text;
+            }
+        }
+
+        private async void CheckBox_CheckChanged_1(object sender, EventArgs e)
+        {
+            var checkbox = (CheckBox)sender;
+            if (checkbox.IsChecked)
+            {
+                checkbox.Color = Color.Black;
+                var labKey = checkbox.Text;
+                var getnode = await notesRepository.GetNoteByKeyAsync(noteKey, uid);
+                getnode.LabelsList.Add(labKey);
+                Note note = new Note
+                {
+                    Title=getnode.Title,
+                    Notes=getnode.Notes,
+                    ColorNote=getnode.ColorNote,
+                    LabelsList=getnode.LabelsList
+                };
+                
+                   firebasedata.Updatelabelstonotes(noteKey, note);
             }
         }
     }

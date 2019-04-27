@@ -112,7 +112,7 @@ namespace FUNDOOAPP.views.RemiderAndLocation
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void Button_Clicked_2(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new labelspage());
+            await Navigation.PushModalAsync(new labelspage(noteKeys));
             await PopupNavigation.Instance.PopAsync(true);
         }
     }

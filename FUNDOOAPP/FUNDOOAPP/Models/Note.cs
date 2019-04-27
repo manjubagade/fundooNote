@@ -7,6 +7,7 @@
 
 namespace FUNDOOAPP.Models
 {
+    using System.Collections.Generic;
     using static FUNDOOAPP.DataFile.Enum;
 
     /// <summary>
@@ -55,5 +56,7 @@ namespace FUNDOOAPP.Models
         public string DateTime { get; set; }
 
         public string ColorNote { get; set; }
+
+        public IList<string> LabelsList { get; set; } = new List<string>();
     }
 }

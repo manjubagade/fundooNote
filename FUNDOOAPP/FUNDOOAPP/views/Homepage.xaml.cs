@@ -115,10 +115,11 @@ namespace FUNDOOAPP.views
         /// Notes the grid view.
         /// </summary>
         /// <param name="list">The list.</param>
-        public void NoteGridView(IList<Note> list)
+        public async void NoteGridView(IList<Note> list)
         {
             try
             {
+                var alllabels = await this.firebase.GetAllLabels();
                 GridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(170) });
                 GridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(170) });
                 GridLayout.Margin = 5;
@@ -198,6 +199,32 @@ namespace FUNDOOAPP.views
                         frame.CornerRadius = 25;
                         FrameColorSetter.GetColor(data, frame);
                         frame.Content = layout;
+
+                        foreach (LabelNotes model in alllabels)
+                        {
+                            IList<string> lists = data.LabelsList;
+                            foreach (var labelId in lists)
+                            {
+                                if (model.LabelKey.Equals(labelId))
+                                {
+                                    var labelName = new Label
+                                    {
+                                        Text = model.Label,
+                                        HorizontalOptions = LayoutOptions.Center,
+                                        VerticalOptions = LayoutOptions.Start,
+                                        FontSize = 11
+                                    };
+                                    var labelFrame = new Frame();
+                                    labelFrame.CornerRadius = 28;
+                                    labelFrame.HeightRequest = 14;
+                                    labelFrame.Content = labelName;
+                                    labelFrame.BorderColor = Color.Gray;
+                                    labelFrame.BackgroundColor = Color.FromHex(FrameColorSetter.GetHexColor(data));
+                                    layout.Children.Add(labelFrame);
+                                }
+                            }
+                        }
+
                         tapGestureRecognizer.Tapped += (object sender, EventArgs args) =>
                         {
                             StackLayout layout123 = (StackLayout)sender;
@@ -250,7 +277,7 @@ namespace FUNDOOAPP.views
 
 
                 var uid = DependencyService.Get<IFirebaseAuthenticator>().User();
-                var notes = await this.notesRepository.GetNotesAsync(uid);
+                var notes = await this.notesRepository.GetNotesAsync(uid);               
                 IList<Note> listNote = new List<Note>();
                 IList<Note> listnote1 = new List<Note>();
                 if (notes != null)
@@ -288,6 +315,7 @@ namespace FUNDOOAPP.views
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListViewNote());
+             this.Navigation.RemovePage(this);
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)

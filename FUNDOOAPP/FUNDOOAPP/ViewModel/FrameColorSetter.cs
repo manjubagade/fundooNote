@@ -96,5 +96,56 @@ namespace FUNDOOAPP.ViewModel
             }
 
         }
+        public static string GetHexColor(Note note)
+        {
+            if (note.ColorNote.Equals("Green"))
+            {
+                return "008000";
+            }
+
+            if (note.ColorNote.Equals("Aqua"))
+            {
+
+                return "00ffff";
+            }
+
+            if (note.ColorNote.Equals("DarkGoldenrod"))
+            {
+
+                return "b8860b";
+            }
+
+            if (note.ColorNote.Equals("Gold"))
+            {
+
+                return "ffd700";
+            }
+
+            if (note.ColorNote.Equals("GreenYellow"))
+            {
+
+                return "adff2f";
+            }
+
+            if (note.ColorNote.Equals("Gray"))
+            {
+
+                return "808080";
+            }
+
+            if (note.ColorNote.Equals("Lavender"))
+            {
+
+                return "e6e6fa";
+            }
+
+            if (note.ColorNote.Equals("MintCream"))
+            {
+
+                return "f5fffa";
+            }
+
+            return "ffffff";
+        }
     }
 }

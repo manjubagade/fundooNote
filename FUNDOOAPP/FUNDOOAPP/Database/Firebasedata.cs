@@ -109,8 +109,41 @@ namespace FUNDOOAPP.Database
             return (await this.firebase
               .Child("User").Child(userid).Child("Lab").OnceAsync<LabelNotes>()).Select(item => new LabelNotes
               {
-                  Label = item.Object.Label
+                  Label = item.Object.Label,
+                  LabelKey = item.Key
+
               }).ToList();
+        }
+
+        public async Task<LabelNotes> GetLabel(string key, string uid)
+        {
+            LabelNotes labelNotes = await this.firebase.Child("User").Child(uid).Child("Lab").Child(key).OnceSingleAsync<LabelNotes>();
+            return labelNotes;
+        }
+
+        public async void UpdateLable(LabelNotes note, string key, string uid)
+        {
+            await this.firebase.Child("User").Child(uid).Child("Lab").Child(key).PutAsync<LabelNotes>(new LabelNotes()
+            {
+                Label = note.Label
+            });
+        }
+        public void DeleteLabel(string userId, string keyLabel)
+        {
+            this.firebase.Child("User").Child(userId).Child("Lab").Child(keyLabel).DeleteAsync();
+        }
+
+        public async void Updatelabelstonotes(string keyNote, Note note)
+        {
+            var userid = DependencyService.Get<IFirebaseAuthenticator>().User();
+            await firebase.Child("User").Child(userid).Child("Note").Child(keyNote).PutAsync(new Note()
+            {
+                Title = note.Title,
+                Notes = note.Notes,
+                LabelsList=note.LabelsList,
+                noteType=note.noteType,
+                ColorNote=note.ColorNote
+            });
         }
     }
 }
